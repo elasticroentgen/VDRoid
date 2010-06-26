@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+android:id="@+id/timer_li"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+
+	  	<TextView
+		  android:id="@+id/timer_li_channel"
+		  xmlns:android="http://schemas.android.com/apk/res/android"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:paddingLeft="10dp"
+		  android:paddingTop="10dp"
+		  style="@android:style/TextAppearance.Small"
+		  android:textSize="12sp" />
+	   <TextView
+		  android:id="@+id/timer_li_name"
+		  xmlns:android="http://schemas.android.com/apk/res/android"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+
+		  android:paddingLeft="10dp"
+		  style="@android:style/TextAppearance.Large"
+		  android:textSize="16sp"
+		  android:layout_below="@+id/timer_li_channel"
+		  
+		/>
+		  
+		<TextView
+		  android:id="@+id/timer_li_timeline"
+		  xmlns:android="http://schemas.android.com/apk/res/android"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:paddingLeft="10dp"
+		  style="@android:style/TextAppearance.Small"
+		  android:textSize="14sp" 
+		  android:layout_below="@+id/timer_li_name"
+		  />
+
+     <CheckBox android:id="@+id/timer_li_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+		/>
+
+</RelativeLayout>

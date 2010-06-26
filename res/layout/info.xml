@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical">
+  
+<TextView 
+android:id="@+id/info_channame" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content"
+android:paddingTop="10dp"
+android:textSize="13sp"
+
+/>
+
+<TextView 
+android:id="@+id/info_timeline" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content"
+android:paddingBottom="5dp"
+android:textSize="13sp"
+
+/>
+
+<TextView 
+android:id="@+id/info_title" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content"
+android:textSize="16sp"
+style="@android:style/TextAppearance.Large"
+/>
+
+<TextView 
+android:id="@+id/info_subtitle" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content"
+android:textSize="12sp"
+style="@android:style/TextAppearance.Small"
+/>
+
+<View 
+    android:layout_width="fill_parent" 
+    android:layout_height="2dp" 
+    android:background="#FFFFFF" 
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    
+    /> 
+
+<TextView 
+android:id="@+id/info_desc" 
+android:layout_width="fill_parent" 
+android:layout_height="fill_parent"
+android:layout_weight="1"
+/>
+
+<View 
+    android:layout_width="fill_parent" 
+    android:layout_height="2dp" 
+    android:background="#FFFFFF" 
+    android:layout_marginBottom="5dp"
+     android:layout_marginTop="5dp"
+    /> 
+    
+   <Button android:id="@+id/info_rec"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:text="Aufzeichnen" />
+    
+    <Button android:id="@+id/info_switch"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:text="Umschalten" />
+
+</LinearLayout>

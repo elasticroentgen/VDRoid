@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical">
+  
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="1">
+    <TableRow>
+		<TextView 
+		android:id="@+id/info_title" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:textSize="16sp"
+		style="@android:style/TextAppearance.Large"
+		/>
+		
+		<TextView 
+		android:id="@+id/info_channame" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:gravity="right"
+		android:textSize="12sp"
+		style="@android:style/TextAppearance.Small"
+		/>
+    </TableRow>
+    <TableRow>
+		<TextView 
+		android:id="@+id/info_subtitle" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:textSize="13sp"
+		
+		/>
+		
+		<TextView 
+		android:id="@+id/info_timeline" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:gravity="right"
+		android:textSize="12sp"
+		
+		/>
+    </TableRow>
+</TableLayout>
+
+
+<View 
+    android:layout_width="fill_parent" 
+    android:layout_height="2dp" 
+    android:background="#FFFFFF" 
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    
+    /> 
+
+<TextView 
+android:id="@+id/info_desc" 
+android:layout_width="fill_parent" 
+android:layout_height="fill_parent"
+android:layout_weight="2"
+/>
+
+<View 
+    android:layout_width="fill_parent" 
+    android:layout_height="2dp" 
+    android:background="#FFFFFF" 
+    android:layout_marginBottom="5dp"
+     android:layout_marginTop="5dp"
+    /> 
+ 
+  <LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal">
+   <Button android:id="@+id/info_rec"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:text="Aufzeichnen" />
+    
+    <Button android:id="@+id/info_switch"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:text="Umschalten" />
+	</LinearLayout>
+</LinearLayout>

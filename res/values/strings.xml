@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sdk_rec">7</string>
+    <string name="sdk_min">6</string>
+    
+    <string name="app_name">VDRControl</string>
+<string name="no_server">Keine VDR-Server eingerichtet!</string>
+<string name="new_server">Neue VDR-Verbindung hinzufügen</string>
+<string name="new_server_add">Hinzufügen</string>
+<string name="new_server_host">Hostname oder IP:</string>
+<string name="new_server_name">Name der Verbindung</string>
+</resources>
