@@ -201,10 +201,20 @@ public class vdr_timers extends Activity {
 	    			Message msg = mHandler.obtainMessage();
 	    		    Bundle b = new Bundle();
 	    				 
-	    			if(line.startsWith("250 "))
+	    			if(line.startsWith("250"))
 	    			{
-	    				timerid = Integer.parseInt(line.split(" ")[1]);
-	    				String timerline = line.split(" ", 3)[2];
+	    				int ctimerid; 
+	    				String timerline;
+	    				if(line.startsWith("250 "))
+	    				{
+	    					timerline = line.split(" ", 3)[2];
+	    					ctimerid = Integer.parseInt(line.split(" ")[1]);
+	    				}
+	    				else
+	    				{
+	    					timerline = line.split(" ", 2)[1];
+	    					ctimerid = Integer.parseInt(line.split(" ")[0].split("-")[1]);
+	    				}
 	    				
 	    				//Activetimer
 	    				String active_str = timerline.split(":")[0];
@@ -242,7 +252,7 @@ public class vdr_timers extends Activity {
 		   		     	b.putString("date", cdate);
 		   		     	b.putString("channel", cchannel);
 		   		     	b.putBoolean("active", active);
-		   		     	b.putInt("timerid", timerid);
+		   		     	b.putInt("timerid", ctimerid);
 	    			}
 	    			else if(line.startsWith("550"))
 	    			{
