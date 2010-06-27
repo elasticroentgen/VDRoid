@@ -97,7 +97,7 @@ public class vdr_timers extends Activity {
 				return timerdata.get(position).timerid;
 			}
 			
-			public View getView(int position, View convertView, ViewGroup parent) {
+			public View getView(final int position, View convertView, ViewGroup parent) {
 						
 				if (convertView == null)
 					convertView = mInflater.inflate(R.layout.timers_li, parent, false);
@@ -113,9 +113,7 @@ public class vdr_timers extends Activity {
 				{
 					 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
 				    {
-					 	View parent = (View) buttonView.getParent();
-		        		int pos = time_list.getPositionForView(parent);
-		        		String timerid = String.valueOf(timeadp.getTimerID(pos));
+		        		String timerid = String.valueOf(timeadp.getTimerID(position));
 		        		SVDRP vdr = new SVDRP(host,2001);
 		        		
 				        if ( isChecked )
