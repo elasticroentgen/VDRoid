@@ -15,9 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-
 public class vdr_show extends Activity {
-	
+		
 	private ListView menulist;
 	private TextView head;
 	private TextView vdr_status;

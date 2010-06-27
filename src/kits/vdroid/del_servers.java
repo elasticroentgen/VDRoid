@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 
+
 public class del_servers extends Activity {
     private ListView lv;
 	private VDRDBHelper db;

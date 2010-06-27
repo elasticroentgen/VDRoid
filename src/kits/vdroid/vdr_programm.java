@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+
 public class vdr_programm extends Activity {
 
 	SVDRP vdr;

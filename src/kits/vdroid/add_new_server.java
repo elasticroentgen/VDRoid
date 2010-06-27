@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 public class add_new_server extends Activity {
 
 	/** Called when the activity is first created. */
