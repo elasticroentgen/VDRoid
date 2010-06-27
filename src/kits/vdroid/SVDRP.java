@@ -1,16 +1,16 @@
+//TODO: Crash bei Access Denied vom SVDRP-Service http://www.vdr-portal.de/board/thread.php?postid=922531#post922531
+
 package kits.vdroid;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.InterruptedIOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +48,6 @@ public class SVDRP {
 			greet = net_read.readLine();
 			sock_ready = true;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			Log.d("SVDRP","I/O Error or Connection Timeout");
 			sock.close();
 			sock_ready = false;
@@ -63,7 +62,6 @@ public class SVDRP {
 			sock.close();
 			sock_ready = false;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -75,7 +73,6 @@ public class SVDRP {
 			try {
 				connectSocket();
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 				return null;
 			}
@@ -100,7 +97,6 @@ public class SVDRP {
 		try {
 			result = net_read.readLine();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -115,7 +111,6 @@ public class SVDRP {
 			try {
 				connectSocket();
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				return null;
 			}
 		
@@ -124,7 +119,6 @@ public class SVDRP {
 			while(net_read.ready())
 				net_read.read();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			return null;
 		}	
 			
@@ -138,7 +132,6 @@ public class SVDRP {
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -149,7 +142,6 @@ public class SVDRP {
 				result.add(line);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

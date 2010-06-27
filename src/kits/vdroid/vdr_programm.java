@@ -107,7 +107,6 @@ public class vdr_programm extends Activity {
 		try {
 			ldThread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

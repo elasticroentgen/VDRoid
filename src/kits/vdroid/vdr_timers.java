@@ -1,3 +1,7 @@
+//TODO: Crash beim einlesen der Timers VDR-Portal http://www.vdr-portal.de/board/thread.php?postid=922576#post922576
+//TODO: Crash bei deaktivierten Timern: http://www.vdr-portal.de/board/thread.php?postid=922531#post922531
+
+
 package kits.vdroid;
 
 import java.util.ArrayList;
@@ -196,7 +200,6 @@ public class vdr_timers extends Activity {
 	    			String cdate = null;
 	    			String cchannel = null;
 	    			Boolean active = false;
-	    			int timerid;
 	    			
 	    			Message msg = mHandler.obtainMessage();
 	    		    Bundle b = new Bundle();

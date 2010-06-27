@@ -92,6 +92,11 @@ public class vdr_show extends Activity {
     		Toast.makeText(vdr_show.this,"Keine Verbindung!", Toast.LENGTH_LONG).show();
     		finish();
     	}
+    	else if(server_greeting.contains("Access denied"))
+    	{
+    		Toast.makeText(vdr_show.this,"VDR weist Verbindung ab", Toast.LENGTH_LONG).show();
+    		finish();
+    	}
     	else if(server_greeting == null)
     	{
     		Toast.makeText(vdr_show.this,"VDR-Interface blockiert!", Toast.LENGTH_LONG).show();
