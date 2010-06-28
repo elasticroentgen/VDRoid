@@ -10,6 +10,8 @@ import java.util.ListIterator;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,13 +19,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.AdapterView.OnItemClickListener;
+
 
 public class vdr_timers extends Activity {
 
@@ -46,6 +48,22 @@ public class vdr_timers extends Activity {
         ldThread.start();
         
         time_list.setAdapter(timeadp);
+        
+        //Klick auf Kanal wechselt zum Kanal
+        time_list.setOnItemClickListener(new OnItemClickListener()
+		{
+		    public void onItemClick(AdapterView<?> parent, android.view.View view,int position, long id)
+		    {
+		    	//stopFetchThread();
+		    	//Timerinfo activity
+		    	Intent startStreaming = new Intent(Intent.ACTION_VIEW);
+		        Uri timerUri = Uri.parse("vdr://" + host + "/timer?timerid=" + timeadp.getTimerID(position));
+		        startStreaming.setData(timerUri);
+		        startStreaming.setClass(vdr_timers.this,kits.vdroid.vdr_timer_edit.class);
+		        startActivity(startStreaming);
+	    	
+		    }
+		});
         
         
 	}
@@ -107,24 +125,6 @@ public class vdr_timers extends Activity {
 				((TextView) convertView.findViewById(R.id.timer_li_name)).setText(timerdata.get(position).title);
 				((TextView) convertView.findViewById(R.id.timer_li_timeline)).setText(timerdata.get(position).timeline);
 				((TextView) convertView.findViewById(R.id.timer_li_channel)).setText(chanline);
-				CheckBox active_cbox = ((CheckBox) convertView.findViewById(R.id.timer_li_check));
-				active_cbox.setChecked(timerdata.get(position).active);
-				active_cbox.setOnCheckedChangeListener(new OnCheckedChangeListener()
-				{
-					 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-				    {
-		        		String timerid = String.valueOf(timeadp.getTimerID(position));
-		        		SVDRP vdr = new SVDRP(host,2001);
-		        		
-				        if ( isChecked )
-				        	vdr.getData("MODT " + timerid + " on");
-				        else
-				          	vdr.getData("MODT " + timerid + " off");
-
-				        vdr.close();
-				    }
-	
-				});
 				return convertView;
 				
 			}

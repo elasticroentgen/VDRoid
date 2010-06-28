@@ -40,21 +40,20 @@ public final class R {
         public static final int rec_li_time=0x7f06001b;
         public static final int timer_li=0x7f06001e;
         public static final int timer_li_channel=0x7f06001f;
-        public static final int timer_li_check=0x7f060022;
         public static final int timer_li_name=0x7f060020;
         public static final int timer_li_timeline=0x7f060021;
         public static final int tv_host=0x7f060009;
         public static final int tv_name=0x7f060008;
-        public static final int vdr_actions=0x7f060024;
+        public static final int vdr_actions=0x7f060023;
         public static final int vdr_channel_head=0x7f060003;
         public static final int vdr_channel_list=0x7f060004;
         public static final int vdr_prog_head=0x7f060013;
         public static final int vdr_prog_list=0x7f060014;
         public static final int vdr_rec_head=0x7f060018;
         public static final int vdr_rec_list=0x7f060019;
-        public static final int vdr_show_head=0x7f060023;
-        public static final int vdr_status_chan=0x7f060026;
-        public static final int vdr_status_head=0x7f060025;
+        public static final int vdr_show_head=0x7f060022;
+        public static final int vdr_status_chan=0x7f060025;
+        public static final int vdr_status_head=0x7f060024;
         public static final int vdr_timers_head=0x7f06001c;
         public static final int vdr_timers_list=0x7f06001d;
     }
@@ -71,9 +70,10 @@ public final class R {
         public static final int recordings=0x7f030009;
         public static final int recordings_li=0x7f03000a;
         public static final int server_listitem=0x7f03000b;
-        public static final int timers=0x7f03000c;
-        public static final int timers_li=0x7f03000d;
-        public static final int vdrshow=0x7f03000e;
+        public static final int timer_edit=0x7f03000c;
+        public static final int timers=0x7f03000d;
+        public static final int timers_li=0x7f03000e;
+        public static final int vdrshow=0x7f03000f;
     }
     public static final class string {
         public static final int app_name=0x7f040002;
