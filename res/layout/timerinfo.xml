@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:orientation="vertical"
+  >
+   
+  
+<CheckBox 
+android:text="Timer aktiv" 
+android:id="@+id/timerinfo_active" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<TextView 
+android:text="" 
+android:id="@+id/timerinfo_chan" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<TextView 
+android:text="Name:" 
+android:id="@+id/TextView01" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<EditText 
+android:text=""
+android:id="@+id/timerinfo_name" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"
+/>
+
+<TextView 
+android:text="Datum:" 
+android:id="@+id/TextView02" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<DatePicker 
+android:id="@+id/timerinfo_date" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<TextView 
+android:text="Startzeit:" 
+android:id="@+id/TextView03" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<TimePicker 
+android:id="@+id/timerinfo_time_start" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<TextView 
+android:text="Endezeit:" 
+android:id="@+id/TextView03" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<TimePicker 
+android:id="@+id/timerinfo_time_end" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<Button 
+android:text="OK" 
+android:id="@+id/Button01" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+<Button 
+android:text="Abbrechen" 
+android:id="@+id/Button01" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content"/>
+
+</LinearLayout>

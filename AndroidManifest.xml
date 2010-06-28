@@ -21,9 +21,8 @@
 <activity android:name="vdr_programm"></activity>
 <activity android:name="vdr_timers"></activity>
 </application>
-<uses-sdk android:minSdkVersion="7" 
-          android:targetSdkVersion="7"
-          />
+<uses-sdk android:targetSdkVersion="7"
+          android:minSdkVersion="4"/>
 
 
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
