@@ -18,6 +18,10 @@ public final class R {
         public static final int vdricon=0x7f020001;
     }
     public static final class id {
+        public static final int Button01=0x7f060025;
+        public static final int TextView01=0x7f06001e;
+        public static final int TextView02=0x7f060020;
+        public static final int TextView03=0x7f060022;
         public static final int channel_li_name=0x7f060005;
         public static final int channel_li_now=0x7f060006;
         public static final int channel_li_time=0x7f060007;
@@ -38,25 +42,31 @@ public final class R {
         public static final int prog_li_title=0x7f060016;
         public static final int rec_li_name=0x7f06001a;
         public static final int rec_li_time=0x7f06001b;
-        public static final int timer_li=0x7f06001e;
-        public static final int timer_li_channel=0x7f06001f;
-        public static final int timer_li_check=0x7f060022;
-        public static final int timer_li_name=0x7f060020;
-        public static final int timer_li_timeline=0x7f060021;
+        public static final int timer_li=0x7f060028;
+        public static final int timer_li_channel=0x7f060029;
+        public static final int timer_li_check=0x7f06002c;
+        public static final int timer_li_name=0x7f06002a;
+        public static final int timer_li_timeline=0x7f06002b;
+        public static final int timerinfo_active=0x7f06001c;
+        public static final int timerinfo_chan=0x7f06001d;
+        public static final int timerinfo_date=0x7f060021;
+        public static final int timerinfo_name=0x7f06001f;
+        public static final int timerinfo_time_end=0x7f060024;
+        public static final int timerinfo_time_start=0x7f060023;
         public static final int tv_host=0x7f060009;
         public static final int tv_name=0x7f060008;
-        public static final int vdr_actions=0x7f060024;
+        public static final int vdr_actions=0x7f06002e;
         public static final int vdr_channel_head=0x7f060003;
         public static final int vdr_channel_list=0x7f060004;
         public static final int vdr_prog_head=0x7f060013;
         public static final int vdr_prog_list=0x7f060014;
         public static final int vdr_rec_head=0x7f060018;
         public static final int vdr_rec_list=0x7f060019;
-        public static final int vdr_show_head=0x7f060023;
-        public static final int vdr_status_chan=0x7f060026;
-        public static final int vdr_status_head=0x7f060025;
-        public static final int vdr_timers_head=0x7f06001c;
-        public static final int vdr_timers_list=0x7f06001d;
+        public static final int vdr_show_head=0x7f06002d;
+        public static final int vdr_status_chan=0x7f060030;
+        public static final int vdr_status_head=0x7f06002f;
+        public static final int vdr_timers_head=0x7f060026;
+        public static final int vdr_timers_list=0x7f060027;
     }
     public static final class layout {
         public static final int add_server=0x7f030000;
@@ -71,9 +81,10 @@ public final class R {
         public static final int recordings=0x7f030009;
         public static final int recordings_li=0x7f03000a;
         public static final int server_listitem=0x7f03000b;
-        public static final int timers=0x7f03000c;
-        public static final int timers_li=0x7f03000d;
-        public static final int vdrshow=0x7f03000e;
+        public static final int timerinfo=0x7f03000c;
+        public static final int timers=0x7f03000d;
+        public static final int timers_li=0x7f03000e;
+        public static final int vdrshow=0x7f03000f;
     }
     public static final class string {
         public static final int app_name=0x7f040002;
