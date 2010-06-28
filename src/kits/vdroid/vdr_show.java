@@ -100,6 +100,7 @@ public class vdr_show extends Activity {
     	{
     		Toast.makeText(vdr_show.this,"VDR-Interface blockiert!", Toast.LENGTH_LONG).show();
     		finish();
+    		
     	}
     	else    		
     		Toast.makeText(vdr_show.this,server_greeting, Toast.LENGTH_LONG).show();
