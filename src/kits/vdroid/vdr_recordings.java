@@ -58,6 +58,7 @@ public class vdr_recordings extends Activity {
 		    	Toast.makeText(vdr_recordings.this,"Starte Wiedergabe...", Toast.LENGTH_LONG).show();
 		    	SVDRP vdr = new SVDRP(host,2001);
 		    	vdr.getData("PLAY "+ (position + 1) + " begin");
+		    	vdr.close();
 		    	finish();
 		    }
 		});
