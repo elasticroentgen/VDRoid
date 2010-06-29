@@ -177,7 +177,10 @@ public class TimerInfo extends Activity {
 	
 	private void deleteThisTimer()
 	{
-		Log.d("TIMER", "DELETEING");
+		Log.d("TIMER", "DELETING");
+		vdr.getData("DELT " + String.valueOf(timerid));
+		vdr.close();
+		finish();
 	}
 	
 	private void updateTimer()
