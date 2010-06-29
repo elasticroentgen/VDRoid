@@ -7,10 +7,10 @@ package kits.vdroid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -43,14 +43,10 @@ public class vdr_timers extends Activity {
         
         time_list = (ListView) findViewById(R.id.vdr_timers_list);
         host = getIntent().getData().getHost();
-        
-        ldThread = new LoadThread(loadHandler);
-        ldThread.start();
-        
+              
         time_list.setAdapter(timeadp);
         
-        
-        //Klick auf Kanal wechselt zum Kanal
+        //Klick auf Timer zeigt Infos
         time_list.setOnItemClickListener(new OnItemClickListener()
 		{
 		    public void onItemClick(AdapterView<?> parent, android.view.View view,int position, long id)
@@ -62,18 +58,26 @@ public class vdr_timers extends Activity {
 		        startStreaming.setData(timerUri);
 		        startStreaming.setClass(vdr_timers.this,kits.vdroid.TimerInfo.class);
 		        startActivity(startStreaming);
-	    	
-		        
+
 		    }
 		});
         
         
 	}
 	
+	@Override
+	public void onResume() {
+        super.onResume();
+        Log.d("VDRTIMERS", "Resumed");
+        ldThread = new LoadThread(loadHandler);
+        timeadp.clear();
+        ldThread.start();
+	}
+	
 	private class TimerInfo
 	{
 		String title;
-		Boolean active;
+		String status;
 		String timeline;
 		String date;
 		String channel;
@@ -97,6 +101,11 @@ public class vdr_timers extends Activity {
 				return timerdata.size();
 			}
 
+			public void clear()
+			{
+				timerdata.clear();
+				this.notifyDataSetInvalidated();
+			}
 			public Object getItem(int position) {
 				timerdata.get(position);
 				return null;
@@ -127,6 +136,16 @@ public class vdr_timers extends Activity {
 				((TextView) convertView.findViewById(R.id.timer_li_name)).setText(timerdata.get(position).title);
 				((TextView) convertView.findViewById(R.id.timer_li_timeline)).setText(timerdata.get(position).timeline);
 				((TextView) convertView.findViewById(R.id.timer_li_channel)).setText(chanline);
+				
+				((TextView) convertView.findViewById(R.id.timer_li_status)).setText(timerdata.get(position).status);
+								
+				if(timerdata.get(position).status == "Inaktiv")
+					((TextView) convertView.findViewById(R.id.timer_li_status)).setTextColor(Color.YELLOW);
+				else if(timerdata.get(position).status == "Zeichnet auf")
+					((TextView) convertView.findViewById(R.id.timer_li_status)).setTextColor(Color.RED);
+				else
+					((TextView) convertView.findViewById(R.id.timer_li_status)).setTextColor(Color.GREEN);
+				
 				return convertView;
 				
 			}
@@ -149,7 +168,7 @@ public class vdr_timers extends Activity {
 		        	ti.channel = msg.getData().getString("channel");
 		        	ti.timeline = msg.getData().getString("timeline");
 		        	ti.date = msg.getData().getString("date");
-		        	ti.active = msg.getData().getBoolean("active");
+		        	ti.status = msg.getData().getString("status");
 		        	ti.timerid = msg.getData().getInt("timerid");
 		        	timeadp.addRecording(ti);
 	        	}
@@ -199,7 +218,7 @@ public class vdr_timers extends Activity {
 	    			String ctimeline = null;
 	    			String cdate = null;
 	    			String cchannel = null;
-	    			Boolean active = false;
+	    			String status = null;
 	    			
 	    			Message msg = mHandler.obtainMessage();
 	    		    Bundle b = new Bundle();
@@ -220,16 +239,19 @@ public class vdr_timers extends Activity {
 	    				}
 	    				
 	    				//Activetimer
-	    				String active_str = timerline.split(":")[0];
-	    				if(active_str.equals("1"))
-	    					active = true;
+	    				int state = Integer.parseInt(timerline.split(":")[0]);
+	    				if(state == 0 || state == 2 || state == 4 || state == 8)
+	    					status = "Inaktiv";
 	    				else
-	    					active = false;
+	    					status = "Aktiv";
+	    				
+	    				if(state == 9)
+	    					status = "Zeichnet auf";
+	    			
 	    				
 	    				//Chanalnummer
 	    				cnr = timerline.split(":")[1];
-	    				
-	    				
+	    				    				
 	    				//Datum
 	    				String date_raw = timerline.split(":")[2];
 	    				cdate = date_raw.split("-")[2] + "." + date_raw.split("-")[1] + "." + date_raw.split("-")[0]; 
@@ -255,7 +277,7 @@ public class vdr_timers extends Activity {
 		   		     	b.putString("timeline", ctimeline);
 		   		     	b.putString("date", cdate);
 		   		     	b.putString("channel", cchannel);
-		   		     	b.putBoolean("active", active);
+		   		     	b.putString("status", status);
 		   		     	b.putInt("timerid", ctimerid);
 	    			}
 	    			else if(line.startsWith("550"))
