@@ -1,9 +1,11 @@
 package kits.vdroid;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -159,6 +161,7 @@ public class TimerInfo extends Activity {
 	        });
 			delete_btn.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
+	            	
 	                deleteThisTimer();
 	            }
 	        });
@@ -177,10 +180,25 @@ public class TimerInfo extends Activity {
 	
 	private void deleteThisTimer()
 	{
-		Log.d("TIMER", "DELETING");
-		vdr.getData("DELT " + String.valueOf(timerid));
-		vdr.close();
-		finish();
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Timer wirklich löschen?")
+		       .setCancelable(false)
+		       .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		       		Log.d("TIMER", "DELETING");
+		    		vdr.getData("DELT " + String.valueOf(timerid));
+		    		vdr.close();
+		    		finish();
+		           }
+		       })
+		       .setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		                dialog.cancel();
+		           }
+		       });
+		AlertDialog alert = builder.create();
+		alert.show();
 	}
 	
 	private void updateTimer()
