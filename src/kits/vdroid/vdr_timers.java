@@ -49,6 +49,7 @@ public class vdr_timers extends Activity {
         
         time_list.setAdapter(timeadp);
         
+        
         //Klick auf Kanal wechselt zum Kanal
         time_list.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -59,9 +60,10 @@ public class vdr_timers extends Activity {
 		    	Intent startStreaming = new Intent(Intent.ACTION_VIEW);
 		        Uri timerUri = Uri.parse("vdr://" + host + "/timer?timerid=" + timeadp.getTimerID(position));
 		        startStreaming.setData(timerUri);
-		        startStreaming.setClass(vdr_timers.this,kits.vdroid.vdr_timer_edit.class);
+		        startStreaming.setClass(vdr_timers.this,kits.vdroid.TimerInfo.class);
 		        startActivity(startStreaming);
 	    	
+		        
 		    }
 		});
         
@@ -226,6 +228,7 @@ public class vdr_timers extends Activity {
 	    				
 	    				//Chanalnummer
 	    				cnr = timerline.split(":")[1];
+	    				
 	    				
 	    				//Datum
 	    				String date_raw = timerline.split(":")[2];
