@@ -22,13 +22,24 @@ private static final String DATABASE_NAME = "vdroid.db";
       this.context = context;
       OpenHelper openHelper = new OpenHelper(this.context);
       this.db = openHelper.getWritableDatabase();
-      this.insertServer = this.db.compileStatement("INSERT INTO SERVERS (NAME,HOST) VALUES (?,?)");
+      this.insertServer = this.db.compileStatement("INSERT INTO SERVERS (NAME,HOST,ENC,KEY) VALUES (?,?,?,?)");
    }
 
-   public void addServer(String name, String host)
+   public void addServer(String name, String host, Boolean enc_on, String key)
    {
+	   String enc;
+	   if(enc_on)
+		   enc="true";
+	   else
+		   enc="false";
+	   
+	   if(key == null)
+		   key = "";
+	   
 	  insertServer.bindString(1, name);
 	  insertServer.bindString(2, host);
+	  insertServer.bindString(3, enc);
+	  insertServer.bindString(4, key);
 	  insertServer.executeInsert();
    }
    
@@ -50,6 +61,23 @@ private static final String DATABASE_NAME = "vdroid.db";
 	   Cursor c = db.rawQuery("SELECT HOST FROM SERVERS WHERE NAME = '"+ name + "'",null); 
 	   c.moveToFirst();
 	   return c.getString(0);
+   }
+   
+   public String getEncKey(String name)
+   {
+	   Cursor c = db.rawQuery("SELECT KEY FROM SERVERS WHERE NAME = '"+ name + "'",null); 
+	   c.moveToFirst();
+	   return c.getString(0);
+   }
+   
+   public Boolean isEncOn(String name)
+   {
+	   Cursor c = db.rawQuery("SELECT ENC FROM SERVERS WHERE NAME = '"+ name + "'",null); 
+	   c.moveToFirst();
+	   if(c.getString(0) == "true")
+		   return true;
+	   else
+		   return false;
    }
    
    public void deleteServerById(long id)
@@ -92,7 +120,7 @@ private static final String DATABASE_NAME = "vdroid.db";
 
       @Override
       public void onCreate(SQLiteDatabase db) {
-         db.execSQL("CREATE TABLE SERVERS (id INTEGER PRIMARY KEY, name TEXT, host TEXT)");
+         db.execSQL("CREATE TABLE SERVERS (id INTEGER PRIMARY KEY, name TEXT, host TEXT, enc TEXT, key TEXT)");
      }
 
 	@Override

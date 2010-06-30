@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,6 +28,14 @@ public class add_new_server extends Activity {
 	        	final EditText ui_name = (EditText) findViewById(R.id.new_server_name_edit);
 	        	String name = ui_name.getText().toString();
 	        	
+	        	final EditText ui_key = (EditText) findViewById(R.id.new_server_host_key);
+	        	String key = ui_key.getText().toString();
+	        	
+	        	CheckBox cb = (CheckBox) findViewById(R.id.new_server_isenc);
+	        	Boolean encon = false;
+	        	if(cb.isChecked())
+	        		encon = true;
+	        	
 	        	VDRDBHelper db = new VDRDBHelper(add_new_server.this);
 
 	        	if(name.length() == 0 && host.length() == 0)
@@ -37,10 +46,9 @@ public class add_new_server extends Activity {
 	        	{
 	        		//Save new Server to Database
 	        		
-	        		db.addServer(name, host);
+	        		db.addServer(name, host, encon, key);
 	        		Toast.makeText(add_new_server.this,name + " hinzugefügt!", Toast.LENGTH_LONG).show();
-	        		ui_host.setText("");
-	        		ui_name.setText("");
+	        		finish();
 	        	}
 	        		
 	        }

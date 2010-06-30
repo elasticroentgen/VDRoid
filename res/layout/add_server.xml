@@ -25,6 +25,41 @@
     android:layout_height="wrap_content"
     android:background="@android:drawable/editbox_background"/>
 
+<View 
+    android:layout_width="fill_parent" 
+    android:layout_height="2dp" 
+    android:background="#FFFFFF" 
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    
+    /> 
+
+<CheckBox
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/new_server_isenc"
+    android:text="eSVDRP aktivieren"
+    />   
+
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Schlüssel"/>   
+<EditText
+    android:id="@+id/new_server_host_key"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/editbox_background"/>
+
+<View 
+    android:layout_width="fill_parent" 
+    android:layout_height="2dp" 
+    android:background="#FFFFFF" 
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    
+    /> 
+
 <Button
 	android:id="@+id/new_server_add"
     android:layout_width="fill_parent"
