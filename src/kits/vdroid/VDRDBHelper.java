@@ -25,7 +25,7 @@ private static final String DATABASE_NAME = "vdroid.db";
       this.insertServer = this.db.compileStatement("INSERT INTO SERVERS (NAME,HOST,ENC,KEY) VALUES (?,?,?,?)");
    }
 
-   public void addServer(String name, String host, Boolean enc_on, String key)
+   public void addServer(String name, String host, String port, Boolean enc_on, String key)
    {
 	   String enc;
 	   if(enc_on)
@@ -40,6 +40,7 @@ private static final String DATABASE_NAME = "vdroid.db";
 	  insertServer.bindString(2, host);
 	  insertServer.bindString(3, enc);
 	  insertServer.bindString(4, key);
+	  insertServer.bindString(5, port);
 	  insertServer.executeInsert();
    }
    
@@ -61,6 +62,13 @@ private static final String DATABASE_NAME = "vdroid.db";
 	   Cursor c = db.rawQuery("SELECT HOST FROM SERVERS WHERE NAME = '"+ name + "'",null); 
 	   c.moveToFirst();
 	   return c.getString(0);
+   }
+   
+   public int getPortByName(String name)
+   {
+	   Cursor c = db.rawQuery("SELECT PORT FROM SERVERS WHERE NAME = '"+ name + "'",null); 
+	   c.moveToFirst();
+	   return Integer.parseInt(c.getString(0));
    }
    
    public String getEncKey(String name)
@@ -120,7 +128,7 @@ private static final String DATABASE_NAME = "vdroid.db";
 
       @Override
       public void onCreate(SQLiteDatabase db) {
-         db.execSQL("CREATE TABLE SERVERS (id INTEGER PRIMARY KEY, name TEXT, host TEXT, enc TEXT, key TEXT)");
+         db.execSQL("CREATE TABLE SERVERS (id INTEGER PRIMARY KEY, name TEXT, host TEXT, enc TEXT, key TEXT, port TEXT)");
      }
 
 	@Override

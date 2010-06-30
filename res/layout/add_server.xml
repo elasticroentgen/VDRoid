@@ -25,6 +25,16 @@
     android:layout_height="wrap_content"
     android:background="@android:drawable/editbox_background"/>
 
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="SVDRP/eSVDRP-Port"/>   
+<EditText
+    android:id="@+id/new_server_port"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/editbox_background"/>
+
 <View 
     android:layout_width="fill_parent" 
     android:layout_height="2dp" 

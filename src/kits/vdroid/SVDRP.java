@@ -14,6 +14,7 @@ import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.util.Log;
 
 public class SVDRP {
@@ -25,13 +26,17 @@ public class SVDRP {
 	private SocketAddress sockaddr;
 	private String greet;
 	private Boolean sock_ready;
+	private VDRDBHelper db;
+	private Boolean isEnc;
 	
-	public SVDRP (String host, int port)
+	public SVDRP (String server, Context parent)
 	{
 		greet = "N/A";
+		isEnc = false;
 		sock_ready = false;
-		sockaddr = new InetSocketAddress(host, 2001);
-       
+		db = new VDRDBHelper(parent);
+		sockaddr = new InetSocketAddress(db.getHostByName(server), db.getPortByName(server));
+				
 	}
 	
 	private void connectSocket() throws Exception

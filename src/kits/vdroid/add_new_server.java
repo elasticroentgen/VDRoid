@@ -31,6 +31,9 @@ public class add_new_server extends Activity {
 	        	final EditText ui_key = (EditText) findViewById(R.id.new_server_host_key);
 	        	String key = ui_key.getText().toString();
 	        	
+	        	final EditText ui_port = (EditText) findViewById(R.id.new_server_port);
+	        	String port = ui_port.getText().toString();
+	        	
 	        	CheckBox cb = (CheckBox) findViewById(R.id.new_server_isenc);
 	        	Boolean encon = false;
 	        	if(cb.isChecked())
@@ -46,7 +49,7 @@ public class add_new_server extends Activity {
 	        	{
 	        		//Save new Server to Database
 	        		
-	        		db.addServer(name, host, encon, key);
+	        		db.addServer(name, host,port, encon, key);
 	        		Toast.makeText(add_new_server.this,name + " hinzugefügt!", Toast.LENGTH_LONG).show();
 	        		finish();
 	        	}
