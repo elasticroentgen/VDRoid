@@ -59,7 +59,7 @@ public class TimerInfo extends Activity {
         host = data.getHost();
         timerid = data.getQueryParameter("timerid");
         Log.d("VDRINFO", "Getting Info's for Timer "+  timerid);
-        vdr = new SVDRP(host,2001);
+        vdr = new SVDRP(host,this);
         
         String line = vdr.getData("LSTT " + timerid);
         

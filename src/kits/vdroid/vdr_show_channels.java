@@ -62,7 +62,7 @@ public class vdr_show_channels extends Activity {
 		    {
 		    	Toast.makeText(vdr_show_channels.this,"Wechsle Kanal...", Toast.LENGTH_LONG).show();
 		    	stopFetchThread();
-		    	SVDRP vdr = new SVDRP(host,2001);
+		    	SVDRP vdr = new SVDRP(host,vdr_show_channels.this);
 		    	int channum = position + 1;
 		    	vdr.getData("CHAN "+ channum);
 		    	vdr.close();
@@ -253,7 +253,7 @@ public class vdr_show_channels extends Activity {
         	state = 0;
         	Log.d("CHANDTHREAD", "Requesting Channellist");
             //Read Channels
-            SVDRP vdr = new SVDRP(host,2001);
+            SVDRP vdr = new SVDRP(host,vdr_show_channels.this);
             
             List<String> channels = vdr.getListData("LSTC");
                 		

@@ -40,11 +40,14 @@ public class add_new_server extends Activity {
 	        		encon = true;
 	        	
 	        	VDRDBHelper db = new VDRDBHelper(add_new_server.this);
+	        	db.init();
 
 	        	if(name.length() == 0 && host.length() == 0)
 	        		Toast.makeText(add_new_server.this,"Name oder Host fehlt!", Toast.LENGTH_LONG).show();
 	        	else if(db.serverExists(name))
 	        		Toast.makeText(add_new_server.this,"Eintrag exisitert bereits!", Toast.LENGTH_LONG).show();
+	        	else if(key.length() != 8 && cb.isChecked())
+	        		Toast.makeText(add_new_server.this,"Schlüssel ist nicht exact 8 Zeichen!", Toast.LENGTH_LONG).show();
 	        	else
 	        	{
 	        		//Save new Server to Database

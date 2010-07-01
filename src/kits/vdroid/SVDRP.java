@@ -11,11 +11,28 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
+
+import java.security.Security;
+import java.security.spec.AlgorithmParameterSpec;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import org.apache.commons.codec.binary.Base64;
+
+//import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import android.content.Context;
 import android.util.Log;
+
 
 public class SVDRP {
 	private Socket sock;
@@ -28,30 +45,161 @@ public class SVDRP {
 	private Boolean sock_ready;
 	private VDRDBHelper db;
 	private Boolean isEnc;
+	private String server;
+	private Context parent;
+	private Cipher ci_in;
+	private Cipher ci_out;
+	private String enckey;
 	
-	public SVDRP (String server, Context parent)
+	public SVDRP (String iserver, Context iparent)
 	{
 		greet = "N/A";
+		server = iserver;
 		isEnc = false;
 		sock_ready = false;
+		parent = iparent;
+		enckey = null;
+		
 		db = new VDRDBHelper(parent);
+		db.init();
 		sockaddr = new InetSocketAddress(db.getHostByName(server), db.getPortByName(server));
-				
+		isEnc = db.isEncOn(server);
+		if(isEnc)
+			enckey = db.getEncKey(server);
+		db.close();
+		
+	}
+		
+	private void sendEnc(String input)
+	{
+		if(isEnc) //Verschlüsselt Senden
+		{
+			try {
+				byte[] data = input.getBytes();
+				byte[] encdata = ci_out.doFinal(data);
+				String sendbuf = new String(Base64.encodeBase64(encdata));
+				net_write.write(sendbuf+"\n");
+			} catch (IllegalBlockSizeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (BadPaddingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else
+			net_write.write(input+"\n");
+		
+		net_write.flush();
+	}
+	
+	private String readEnc() {
+		try {
+			while(!net_read.ready())
+			{
+				Thread.sleep(200);
+			}
+			String line = net_read.readLine();
+			if(isEnc)
+			{
+				byte[] data = Base64.decodeBase64(line.getBytes());
+				byte[] unenc = ci_in.doFinal(data);
+				String data_str = new String(unenc);
+				return data_str;
+			}
+			else
+				return line;
+		
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (IllegalBlockSizeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BadPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 	
 	private void connectSocket() throws Exception
 	{
 		try {
+
 			sock = new Socket();
 			sock.setSoTimeout(2000);
 			sock.connect(sockaddr, 10000);
+			
+			if(isEnc)
+			{
+				Log.d("SVDRPC", "Starting encrypted Communication");
+				//Key
+				SecretKey ci_key = new SecretKeySpec( enckey.getBytes(),"DES"); 
+				byte[] iv = new byte[]{(byte)0x8E, 0x12, 0x39, (byte)0x9C,0x07,0x72,0x6F, 0x5A};
+		        AlgorithmParameterSpec paramSpec = new IvParameterSpec(iv);	
+				//Inut Cipher
+				
+				ci_in = Cipher.getInstance("DES/CFB8/NoPadding");
+				ci_in.init(Cipher.DECRYPT_MODE, ci_key,paramSpec);
+				ci_out = Cipher.getInstance("DES/CFB8/NoPadding");
+				ci_out.init(Cipher.ENCRYPT_MODE,ci_key,paramSpec);
+			}
+			else
+				Log.d("SVDRPC", "Starting non-encrypted Communication");
+
 			net_in = sock.getInputStream();
+			net_out = sock.getOutputStream();
+			
 			InputStreamReader isr = new InputStreamReader(net_in);
 			net_read = new BufferedReader(isr,8192);
-			net_out = sock.getOutputStream();
 			net_write = new PrintWriter(net_out, true);
-			greet = net_read.readLine();
+						
+			//Handshaking Encrypted Connection
+			if(isEnc)
+			{
+				Log.d("SVDRP-ENC", "Handshakeing");
+				
+				int i = 0;
+				while(!net_read.ready())
+				{
+					Log.d("END",String.valueOf(net_in.available()));
+					i++;
+					Thread.sleep(500);
+					if(i>20)
+					{
+						Log.d("SVDRP-ENC", "Encrypted Communication failed. Check Key");
+						sock.close();
+						sock_ready = false;
+						throw new Exception();
+					}
+				}
+				
+				String enc_greet = readEnc();
+				if(enc_greet.startsWith("200-eSVDRP"))
+				{
+					sendEnc("300-OK\n");
+					Log.d("SVDRP-ENC", "Encrypted Communication succesfully established");
+				}
+				else
+				{
+					sock.close();
+					sock_ready = false;
+					Log.d("SVDRP-ENC", "Encrypted Communication failed. Check Key");
+					Log.d("SVDRP-ENC", "Got:" + enc_greet);
+					throw new Exception();
+				}
+			}
+
+			greet = readEnc();
 			sock_ready = true;
+			
 		} catch (IOException e) {
 			Log.d("SVDRP","I/O Error or Connection Timeout");
 			sock.close();
@@ -60,11 +208,14 @@ public class SVDRP {
 		}
 
 	}
-	
+
 	public void close()
 	{
 		try {
-			sock.close();
+			if(isEnc)
+				sendEnc("999-Bye\n");
+			else
+				sock.close();
 			sock_ready = false;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -97,14 +248,10 @@ public class SVDRP {
 				e1.printStackTrace();
 				return result;
 			}
-
-		net_write.println(query);
-		try {
-			result = net_read.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		
+		sendEnc(query);
+		result = readEnc();
+		
 		return result;
 	}
 	
@@ -120,15 +267,15 @@ public class SVDRP {
 			}
 		
 		//Restdaten rauslaufen lassen
-		try {
-			while(net_read.ready())
-				net_read.read();
-		} catch (IOException e1) {
-			return null;
-		}	
+//		try {
+//			while(net_read.ready())
+//				net_read.read();
+//		} catch (IOException e1) {
+//			return null;
+//		}	
 			
 		try {
-			net_write.println(query);
+			sendEnc(query);
 			String line;
 			//wait for data
 			while(!net_read.ready())
@@ -143,7 +290,7 @@ public class SVDRP {
 			
 			while(net_read.ready())
 			{
-				line = net_read.readLine();	
+				line = readEnc();	
 				result.add(line);
 			}
 		} catch (IOException e) {

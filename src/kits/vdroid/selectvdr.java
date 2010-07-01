@@ -35,6 +35,7 @@ public class selectvdr extends ListActivity {
         
     	//Check if we have a stored VDR-Connection
       	db = new VDRDBHelper(selectvdr.this);
+      	db.init();
 		String[] VDR_SERVERS = db.getServerNames();
     	
 		if(VDR_SERVERS.length > 0)

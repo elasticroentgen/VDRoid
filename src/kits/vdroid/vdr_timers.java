@@ -192,7 +192,7 @@ public class vdr_timers extends Activity {
 	    		Log.d("TIMERTHREAD", "Requesting Recordings");
 	    		
 	            //Read Channels
-	            SVDRP vdr = new SVDRP(host,2001);
+	            SVDRP vdr = new SVDRP(host,vdr_timers.this);
 	            
 	            List<String> timers = vdr.getListData("LSTT");
 	            

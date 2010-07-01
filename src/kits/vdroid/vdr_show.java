@@ -23,7 +23,7 @@ public class vdr_show extends Activity {
 	private TextView vdr_status_head;
 	private UpdateThread updthread;
 	private SVDRP vdrcon;
-	private String host;
+	private String hostname;
 	
 	final Intent menustart = new Intent(Intent.ACTION_VIEW);
 	
@@ -33,11 +33,11 @@ public class vdr_show extends Activity {
              
         //Parse intent data
         Uri data = getIntent().getData();
-        host = data.getHost();
-        String hostname = data.getQuery();
+        String host = data.getHost();
+        hostname = data.getQuery();
         
         //Setup intents
-        Uri vdruri = Uri.parse("vdr://" + host + "/");
+        Uri vdruri = Uri.parse("vdr://" + hostname + "/");
         menustart.setData(vdruri);
         
 		//Create UI
@@ -82,7 +82,7 @@ public class vdr_show extends Activity {
 		    }
 		});
         
-        vdrcon = new SVDRP(host,2001);
+        vdrcon = new SVDRP(hostname,this);
     	String server_greeting = vdrcon.getGreeting();
         	
     	vdrcon.close();
@@ -174,7 +174,7 @@ public class vdr_show extends Activity {
 		            Log.e("ERROR", "Thread Interrupted");
 		        }
 		        
-		        SVDRP thvdr = new SVDRP(host,2001);
+		        SVDRP thvdr = new SVDRP(hostname,vdr_show.this);
 				
 		        String[] actchan = null;
 		        String actdisk = null;

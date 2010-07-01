@@ -51,7 +51,7 @@ public class vdr_programm extends Activity {
         channr = uridata.getQueryParameter("chan");
                 
         //Kanalname raussuchen
-        vdr = new SVDRP(host,2001);
+        vdr = new SVDRP(host,this);
         String chanline = vdr.getData("LSTC " + channr);
         
         if(chanline == null)
@@ -213,7 +213,7 @@ public class vdr_programm extends Activity {
         	
         	Log.d("PROGTHREAD", "Requesting Programm");
             //Read Channels
-            SVDRP vdr = new SVDRP(host,2001);
+            SVDRP vdr = new SVDRP(host,vdr_programm.this);
             
             List<String> progdata = vdr.getListData("LSTE " + channr);
                 		

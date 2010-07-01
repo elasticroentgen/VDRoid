@@ -33,7 +33,7 @@ public class vdr_info extends Activity {
         time = data.getQueryParameter("time");
         Log.d("VDRINFO", "Getting Info's for "+  chan + " at " + time);
         
-        final SVDRP vdr = new SVDRP(host,2001);
+        final SVDRP vdr = new SVDRP(host,this);
         
         if(!time.contains("now"))
         	time = "at " + time;

@@ -8,10 +8,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 public class VDRDBHelper {
 private static final String DATABASE_NAME = "vdroid.db";
-   private static final int DATABASE_VERSION = 2;
+   private static final int DATABASE_VERSION = 3;
  
    private Context context;
    private SQLiteDatabase db;
@@ -22,9 +23,14 @@ private static final String DATABASE_NAME = "vdroid.db";
       this.context = context;
       OpenHelper openHelper = new OpenHelper(this.context);
       this.db = openHelper.getWritableDatabase();
-      this.insertServer = this.db.compileStatement("INSERT INTO SERVERS (NAME,HOST,ENC,KEY) VALUES (?,?,?,?)");
+      
    }
 
+   public void init()
+   {
+	   this.insertServer = this.db.compileStatement("INSERT INTO SERVERS (NAME,HOST,ENC,KEY,PORT) VALUES (?,?,?,?,?)");
+   }
+   
    public void addServer(String name, String host, String port, Boolean enc_on, String key)
    {
 	   String enc;
@@ -78,11 +84,16 @@ private static final String DATABASE_NAME = "vdroid.db";
 	   return c.getString(0);
    }
    
+   public void close()
+   {
+	   db.close();
+   }
+   
    public Boolean isEncOn(String name)
    {
 	   Cursor c = db.rawQuery("SELECT ENC FROM SERVERS WHERE NAME = '"+ name + "'",null); 
 	   c.moveToFirst();
-	   if(c.getString(0) == "true")
+	   if(c.getString(0).equals("true"))
 		   return true;
 	   else
 		   return false;
@@ -134,7 +145,12 @@ private static final String DATABASE_NAME = "vdroid.db";
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		
+		//if(oldVersion < newVersion)
+		//{
+			Log.d("VDRUPGRADE", "Upgrading");
+			db.execSQL("DROP TABLE SERVERS");
+			db.execSQL("CREATE TABLE SERVERS (id INTEGER PRIMARY KEY, name TEXT, host TEXT, enc TEXT, key TEXT, port TEXT)");
+		//}
 	}
 
    
