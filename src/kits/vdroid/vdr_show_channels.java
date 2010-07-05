@@ -40,6 +40,7 @@ public class vdr_show_channels extends Activity {
 		String name;
 		String now;
 		String timeline;
+		String cnr;
 	}
 	
 	@Override
@@ -111,11 +112,12 @@ public class vdr_show_channels extends Activity {
 	
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		String cnr = chanadp.getChanNr((int) info.id);
 	    switch(item.getItemId()) {
 	    case 1:
 	    	stopFetchThread();
 	        Intent startStreaming = new Intent(Intent.ACTION_VIEW);
-	        Uri streamUri = Uri.parse("vdrstream://" + host + "/" + (info.id + 1));
+	        Uri streamUri = Uri.parse("vdrstream://" + host + "/" + cnr);
 	        startStreaming.setData(streamUri);
 	        startStreaming.setClass(this,kits.vdroid.vdr_stream_channel.class);
 	        startActivity(startStreaming);
@@ -123,7 +125,7 @@ public class vdr_show_channels extends Activity {
 	    case 2:
 	    	stopFetchThread();
 	    	Intent showInfos = new Intent(Intent.ACTION_VIEW);
-	        Uri infoUri = Uri.parse("vdr://" + host + "/info?time=now&chan=" + (info.id + 1));
+	        Uri infoUri = Uri.parse("vdr://" + host + "/info?time=now&chan=" + cnr);
 	        showInfos.setData(infoUri);
 	        showInfos.setClass(this,kits.vdroid.vdr_info.class);
 	        startActivity(showInfos);
@@ -131,7 +133,7 @@ public class vdr_show_channels extends Activity {
 	    case 3:
 	    	stopFetchThread();
 	    	Intent showProg = new Intent(Intent.ACTION_VIEW);
-	        Uri progUri = Uri.parse("vdr://" + host + "/prog?chan=" + (info.id + 1));
+	        Uri progUri = Uri.parse("vdr://" + host + "/prog?chan=" + cnr);
 	        showProg.setData(progUri);
 	        showProg.setClass(this,kits.vdroid.vdr_programm.class);
 	        startActivity(showProg);
@@ -154,6 +156,8 @@ public class vdr_show_channels extends Activity {
         	
         	ci.name =	msg.getData().getString("name");
         	ci.now = msg.getData().getString("now");
+        	ci.cnr = msg.getData().getString("cnr");
+        	
         	long starttime = msg.getData().getInt("time");
         	long dur = msg.getData().getInt("dur");
         	long endtime = starttime + dur;
@@ -200,6 +204,10 @@ public class vdr_show_channels extends Activity {
 			return chandata.size();
 		}
 
+		public String getChanNr(int position) {
+			return chandata.get(position).cnr;
+		}
+		
 		public Object getItem(int position) {
 			chandata.get(position);
 			return null;
@@ -300,7 +308,7 @@ public class vdr_show_channels extends Activity {
     			Message msg = mHandler.obtainMessage();
    		     	Bundle b = new Bundle();
    		     	b.putString("name", cname);
-   		     	b.putString("num", cnr);
+   		     	b.putString("cnr", cnr);
    		     	b.putString("now", cnow);
    		     	b.putInt("time", ctime);
    		     	b.putInt("dur", cdur);

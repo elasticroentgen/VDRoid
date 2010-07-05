@@ -12,16 +12,12 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-import java.security.Security;
 import java.security.spec.AlgorithmParameterSpec;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.CipherOutputStream;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
@@ -72,6 +68,9 @@ public class SVDRP {
 		
 	private void sendEnc(String input)
 	{
+		if(sock_ready == false)
+			return;
+		
 		if(isEnc) //Verschlüsselt Senden
 		{
 			try {
@@ -165,6 +164,15 @@ public class SVDRP {
 			if(isEnc)
 			{
 				Log.d("SVDRP-ENC", "Handshakeing");
+				
+				if(!sock.isConnected())
+				{
+					sock.close();
+					sock_ready = false;
+					throw new Exception();
+				}
+				else
+					sock_ready = true;
 				
 				int i = 0;
 				while(!net_read.ready())
@@ -266,13 +274,6 @@ public class SVDRP {
 				return null;
 			}
 		
-		//Restdaten rauslaufen lassen
-//		try {
-//			while(net_read.ready())
-//				net_read.read();
-//		} catch (IOException e1) {
-//			return null;
-//		}	
 			
 		try {
 			sendEnc(query);
@@ -292,8 +293,21 @@ public class SVDRP {
 			{
 				line = readEnc();	
 				result.add(line);
+				if(line.charAt(3) == '-' && !net_read.ready())
+				{
+					while(!net_read.ready())
+					{
+						Log.d("ARRAYREAD", "Data from VDR not complete, but netbuffers empty. Waiting for next data to arrive");
+						Thread.sleep(100);
+					}
+				}
 			}
+			
+			
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
