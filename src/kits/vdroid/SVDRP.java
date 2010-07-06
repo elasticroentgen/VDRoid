@@ -38,7 +38,6 @@ public class SVDRP {
 	private BufferedReader net_read;
 	private SocketAddress sockaddr;
 	private String greet;
-	private Boolean sock_ready;
 	private VDRDBHelper db;
 	private Boolean isEnc;
 	private String server;
@@ -52,7 +51,6 @@ public class SVDRP {
 		greet = "N/A";
 		server = iserver;
 		isEnc = false;
-		sock_ready = false;
 		parent = iparent;
 		enckey = null;
 		
@@ -63,14 +61,18 @@ public class SVDRP {
 		if(isEnc)
 			enckey = db.getEncKey(server);
 		db.close();
+		sock = new Socket();
 		
 	}
 		
 	private void sendEnc(String input)
 	{
-		if(sock_ready == false)
+		if(!sock.isConnected())
+		{
+			Log.d("SVDRP", "Not connected when trying to send!");
 			return;
-		
+			
+		}
 		if(isEnc) //Verschlüsselt Senden
 		{
 			try {
@@ -130,6 +132,10 @@ public class SVDRP {
 	
 	private void connectSocket() throws Exception
 	{
+		
+		if(sock.isConnected())
+			return;
+
 		try {
 
 			sock = new Socket();
@@ -168,11 +174,8 @@ public class SVDRP {
 				if(!sock.isConnected())
 				{
 					sock.close();
-					sock_ready = false;
 					throw new Exception();
 				}
-				else
-					sock_ready = true;
 				
 				int i = 0;
 				while(!net_read.ready())
@@ -184,7 +187,6 @@ public class SVDRP {
 					{
 						Log.d("SVDRP-ENC", "Encrypted Communication failed. Check Key");
 						sock.close();
-						sock_ready = false;
 						throw new Exception();
 					}
 				}
@@ -198,7 +200,6 @@ public class SVDRP {
 				else
 				{
 					sock.close();
-					sock_ready = false;
 					Log.d("SVDRP-ENC", "Encrypted Communication failed. Check Key");
 					Log.d("SVDRP-ENC", "Got:" + enc_greet);
 					throw new Exception();
@@ -206,12 +207,10 @@ public class SVDRP {
 			}
 
 			greet = readEnc();
-			sock_ready = true;
 			
 		} catch (IOException e) {
 			Log.d("SVDRP","I/O Error or Connection Timeout");
 			sock.close();
-			sock_ready = false;
 			throw new Exception();
 		}
 
@@ -221,25 +220,27 @@ public class SVDRP {
 	{
 		try {
 			if(isEnc)
+			{
 				sendEnc("999-Bye\n");
+			}
 			else
 				sock.close();
-			sock_ready = false;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+
+	
 	public String getGreeting()
 	{
-		//Make Connection when nessesary
-		if(!sock_ready)
-			try {
-				connectSocket();
-			} catch (Exception e1) {
-				e1.printStackTrace();
-				return null;
-			}
+		
+		try {
+			connectSocket();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return greet;
 	}
 	
@@ -248,14 +249,13 @@ public class SVDRP {
 		String result = "";
 		
 		//Make Connection when nessesary
-		if(!sock_ready)
-			try {
-				connectSocket();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				return result;
-			}
+		try {
+			connectSocket();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return result;
+		}
 		
 		sendEnc(query);
 		result = readEnc();
@@ -267,14 +267,13 @@ public class SVDRP {
 	{
 		List<String> result = new ArrayList<String>();
 		//Make Connection when nessesary
-		if(!sock_ready)
-			try {
-				connectSocket();
-			} catch (Exception e1) {
-				return null;
-			}
 		
-			
+		try {
+			connectSocket();
+		} catch (Exception e1) {
+			return null;
+		}
+					
 		try {
 			sendEnc(query);
 			String line;

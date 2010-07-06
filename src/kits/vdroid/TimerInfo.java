@@ -168,7 +168,6 @@ public class TimerInfo extends Activity {
 			
 			
 			updateDisplay();
-			vdr.close();
 		}
         else
         {
