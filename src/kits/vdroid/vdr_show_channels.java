@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.ListIterator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,7 +18,6 @@ import android.os.Message;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -25,7 +26,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class vdr_show_channels extends Activity {
@@ -59,22 +59,58 @@ public class vdr_show_channels extends Activity {
         //Klick auf Kanal wechselt zum Kanal
         chan_list.setOnItemClickListener(new OnItemClickListener()
 		{
-		    public void onItemClick(AdapterView<?> parent, android.view.View view,int position, long id)
+		    public void onItemClick(AdapterView<?> parent, android.view.View view,final int position, long id)
 		    {
-		    	Toast.makeText(vdr_show_channels.this,"Wechsle Kanal...", Toast.LENGTH_LONG).show();
-		    	stopFetchThread();
-		    	SVDRP vdr = new SVDRP(host,vdr_show_channels.this);
-		    	int channum = position + 1;
-		    	vdr.getData("CHAN "+ channum);
-		    	vdr.close();
-		    	finish();
+		    	
+		    	final CharSequence[] items = {"Umschalten", "Infos", "Programm"};
+
+		    	AlertDialog.Builder builder = new AlertDialog.Builder(vdr_show_channels.this);
+		    	builder.setTitle(chanadp.getChanName(position));
+		    	builder.setItems(items, new DialogInterface.OnClickListener() {
+		    	    public void onClick(DialogInterface dialog, int item) {
+		    	        selectMenuItem(item,position);
+		    	    }
+		    	});
+		    	AlertDialog alert = builder.create();
+		    	alert.show();
 		    }
 		});
         
         chan_list.setAdapter(chanadp);
-        registerForContextMenu(chan_list);
+
 	}
 
+	public void selectMenuItem(int item, int position)
+	{
+		
+		String cnr = chanadp.getChanNr(position);
+	    switch(item) {
+	    case 0:
+	    	SVDRP vdr = new SVDRP(host,vdr_show_channels.this);
+	    	int channum = position + 1;
+	    	vdr.getData("CHAN "+ channum);
+	    	vdr.close();
+	    	finish();
+	        return;
+	    case 1:
+	    	stopFetchThread();
+	    	Intent showInfos = new Intent(Intent.ACTION_VIEW);
+	        Uri infoUri = Uri.parse("vdr://" + host + "/info?time=now&chan=" + cnr);
+	        showInfos.setData(infoUri);
+	        showInfos.setClass(this,kits.vdroid.vdr_info.class);
+	        startActivity(showInfos);
+	        return;
+	    case 2:
+	    	stopFetchThread();
+	    	Intent showProg = new Intent(Intent.ACTION_VIEW);
+	        Uri progUri = Uri.parse("vdr://" + host + "/prog?chan=" + cnr);
+	        showProg.setData(progUri);
+	        showProg.setClass(this,kits.vdroid.vdr_programm.class);
+	        startActivity(showProg);
+	        return;
+	    }
+	}
+	
 	@Override
 	public void onResume() {
         super.onResume();
@@ -91,14 +127,6 @@ public class vdr_show_channels extends Activity {
         ldThread.stopFetching();
 	}
 	
-	//Contextmenu
-	public void onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-		//menu.add(0, 1, 0, "Str./aeamen");
-		menu.add(0, 2, 0, "Infos");
-		menu.add(0, 3, 0, "Programm");
-	}
-	
 	private void stopFetchThread()
 	{
 		ldThread.stopFetching();
@@ -110,38 +138,7 @@ public class vdr_show_channels extends Activity {
 		}
 	}
 	
-	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		String cnr = chanadp.getChanNr((int) info.id);
-	    switch(item.getItemId()) {
-	    case 1:
-	    	stopFetchThread();
-	        Intent startStreaming = new Intent(Intent.ACTION_VIEW);
-	        Uri streamUri = Uri.parse("vdrstream://" + host + "/" + cnr);
-	        startStreaming.setData(streamUri);
-	        startStreaming.setClass(this,kits.vdroid.vdr_stream_channel.class);
-	        startActivity(startStreaming);
-	        return true;
-	    case 2:
-	    	stopFetchThread();
-	    	Intent showInfos = new Intent(Intent.ACTION_VIEW);
-	        Uri infoUri = Uri.parse("vdr://" + host + "/info?time=now&chan=" + cnr);
-	        showInfos.setData(infoUri);
-	        showInfos.setClass(this,kits.vdroid.vdr_info.class);
-	        startActivity(showInfos);
-	        return true;
-	    case 3:
-	    	stopFetchThread();
-	    	Intent showProg = new Intent(Intent.ACTION_VIEW);
-	        Uri progUri = Uri.parse("vdr://" + host + "/prog?chan=" + cnr);
-	        showProg.setData(progUri);
-	        showProg.setClass(this,kits.vdroid.vdr_programm.class);
-	        startActivity(showProg);
-	        return true;
-	    }
-	    return super.onContextItemSelected(item);
-	}
-	
+
 	//Hanlder nimmt geladene Kanäle vom Thread auf und läd in ListView
 	final Handler loadHandler = new Handler() {
         public void handleMessage(Message msg) {
@@ -206,6 +203,10 @@ public class vdr_show_channels extends Activity {
 
 		public String getChanNr(int position) {
 			return chandata.get(position).cnr;
+		}
+		
+		public String getChanName(int position) {
+			return chandata.get(position).name;
 		}
 		
 		public Object getItem(int position) {
@@ -287,6 +288,11 @@ public class vdr_show_channels extends Activity {
     				break;
     			String cnr = line.split(" ",2)[0].split("-",2)[1];
     			String cname = line.split(" ",2)[1].split(";",2)[0];
+    			
+    			//Kanalname bereinigen
+    			cname = cname.split(",")[0];
+    			cname = cname.split(":")[0];
+    			
     			String cnow = "Keine EPG Daten";
     			int ctime = 0;
     			int cdur = 0;
