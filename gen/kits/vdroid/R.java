@@ -95,8 +95,15 @@ public final class R {
         public static final int app_name=0x7f040002;
         public static final int new_server=0x7f040004;
         public static final int new_server_add=0x7f040005;
+        public static final int new_server_added=0x7f04000e;
+        public static final int new_server_esvdrp=0x7f040009;
+        public static final int new_server_exisits=0x7f04000c;
         public static final int new_server_host=0x7f040006;
+        public static final int new_server_invkey=0x7f04000d;
+        public static final int new_server_key=0x7f04000a;
+        public static final int new_server_mishost=0x7f04000b;
         public static final int new_server_name=0x7f040007;
+        public static final int new_server_port=0x7f040008;
         public static final int no_server=0x7f040003;
         public static final int sdk_min=0x7f040001;
         public static final int sdk_rec=0x7f040000;

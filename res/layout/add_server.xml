@@ -28,7 +28,7 @@
 <TextView
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:text="SVDRP/eSVDRP-Port"/>   
+    android:text="@string/new_server_port"/>   
 <EditText
     android:id="@+id/new_server_port"
     android:layout_width="fill_parent"
@@ -48,13 +48,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:id="@+id/new_server_isenc"
-    android:text="eSVDRP aktivieren"
+    android:text="@string/new_server_esvdrp"
     />   
 
 <TextView
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:text="Schlüssel"/>   
+    android:text="@string/new_server_key"/>   
 <EditText
     android:id="@+id/new_server_host_key"
     android:layout_width="fill_parent"
@@ -75,9 +75,5 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="@string/new_server_add" />
-  
-  
-
-
 
 </LinearLayout>
