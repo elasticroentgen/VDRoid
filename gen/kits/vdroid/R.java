@@ -107,5 +107,6 @@ public final class R {
         public static final int no_server=0x7f040003;
         public static final int sdk_min=0x7f040001;
         public static final int sdk_rec=0x7f040000;
+        public static final int show_chans_load=0x7f04000f;
     }
 }

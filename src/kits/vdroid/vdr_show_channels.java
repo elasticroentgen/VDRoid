@@ -44,7 +44,7 @@ public class vdr_show_channels extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        chanload_prog = ProgressDialog.show( vdr_show_channels.this, "" , "Lade Kanalliste von VDR... ", false);
+        chanload_prog = ProgressDialog.show( vdr_show_channels.this, "" , R.string.show_chans_load, false);
         
         setContentView(R.layout.channels);
         
