@@ -55,7 +55,7 @@ public class vdr_recordings extends Activity {
 		{
 		    public void onItemClick(AdapterView<?> parent, android.view.View view,int position, long id)
 		    {
-		    	Toast.makeText(vdr_recordings.this,"Starte Wiedergabe...", Toast.LENGTH_LONG).show();
+		    	Toast.makeText(vdr_recordings.this,getResources().getText(R.string.records_play_begin), Toast.LENGTH_LONG).show();
 		    	SVDRP vdr = new SVDRP(host,vdr_recordings.this);
 		    	vdr.getData("PLAY "+ (position + 1) + " begin");
 		    	vdr.close();
@@ -115,7 +115,7 @@ public class vdr_recordings extends Activity {
         	
         	if(msg.getData().getBoolean("error"))
         	{
-        		Toast.makeText(vdr_recordings.this,"VDR-Interface blockiert!", Toast.LENGTH_LONG).show();
+        		Toast.makeText(vdr_recordings.this,getResources().getText(R.string.toast_blocked), Toast.LENGTH_LONG).show();
         		finish();
         	}
         	
@@ -127,7 +127,7 @@ public class vdr_recordings extends Activity {
         	}
         	else
         	{
-        		Toast.makeText(vdr_recordings.this,"Keine Aufnahmen vorhanden!", Toast.LENGTH_LONG).show();
+        		Toast.makeText(vdr_recordings.this,getResources().getText(R.string.toast_norecords), Toast.LENGTH_LONG).show();
         		finish();
         	}
         }

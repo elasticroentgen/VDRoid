@@ -49,8 +49,12 @@
 
 <string name="program">Programm</string>
 
+<string name="records">Aufnahmen</string>
+<string name="records_play_begin">Ab Anfang wiedergeben</string>
+
 <string name="toast_blocked">VDR-Interface blockiert!</string>
 <string name="toast_switch_chan">Wechsle Kanal...</string>
 <string name="toast_record">Aufnahme angelegt</string>
+<string name="toast_norecords">Keine Aufnahmen vorhanden</string>
 
 </resources>

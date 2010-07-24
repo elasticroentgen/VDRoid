@@ -112,6 +112,8 @@ public final class R {
         public static final int ok=0x7f040006;
         public static final int program=0x7f040024;
         public static final int record=0x7f040008;
+        public static final int records=0x7f040025;
+        public static final int records_play_begin=0x7f040026;
         public static final int sdk_min=0x7f040001;
         public static final int sdk_rec=0x7f040000;
         public static final int selectvdr_add=0x7f040018;
@@ -128,9 +130,10 @@ public final class R {
         public static final int timerinfo_time=0x7f04001e;
         public static final int timerinfo_timeerr=0x7f040023;
         public static final int timerinfo_title=0x7f040020;
-        public static final int toast_blocked=0x7f040025;
-        public static final int toast_record=0x7f040027;
-        public static final int toast_switch_chan=0x7f040026;
+        public static final int toast_blocked=0x7f040027;
+        public static final int toast_norecords=0x7f04002a;
+        public static final int toast_record=0x7f040029;
+        public static final int toast_switch_chan=0x7f040028;
         public static final int yes=0x7f040003;
     }
 }

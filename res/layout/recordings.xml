@@ -8,7 +8,7 @@
   
   <TextView 
 	android:id="@+id/vdr_rec_head" 
-	android:text="Aufnahmen"
+	android:text="@string/records"
 	android:textSize="17dp"
 	android:layout_width="fill_parent" 
 	android:layout_height="wrap_content"
