@@ -98,7 +98,7 @@ public class TimerInfo extends Activity {
 			String cchannel = vdr.getData("LSTC " + cnr).split(" ")[2].split(";")[0];
         
 			TextView texthead = ((TextView) findViewById(R.id.timerinfo_head));
-			texthead.setText("Timer bearbeiten - " + cchannel);
+			texthead.setText(getResources().getText(R.string.timerinfo) + " - " + cchannel);
 			
 			//Timer aktiv
 			cb = ((CheckBox) findViewById(R.id.timerinfo_active));
@@ -181,9 +181,9 @@ public class TimerInfo extends Activity {
 	{
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Timer wirklich löschen?")
+		builder.setMessage(getResources().getText(R.string.timerinfo_alert))
 		       .setCancelable(false)
-		       .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+		       .setPositiveButton(getResources().getText(R.string.yes), new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		       		Log.d("TIMER", "DELETING");
 		    		vdr.getData("DELT " + String.valueOf(timerid));
@@ -191,7 +191,7 @@ public class TimerInfo extends Activity {
 		    		finish();
 		           }
 		       })
-		       .setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+		       .setNegativeButton(getResources().getText(R.string.no), new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		                dialog.cancel();
 		           }
@@ -242,7 +242,7 @@ public class TimerInfo extends Activity {
 		
 		vdr.getData("MODT " + String.valueOf(timerid) + " " + timerline);
 		vdr.close();
-		Toast.makeText(TimerInfo.this,"Timer geändert", Toast.LENGTH_LONG).show();
+		Toast.makeText(TimerInfo.this,getResources().getText(R.string.timerinfo_changed), Toast.LENGTH_LONG).show();
 		finish();
 		
 			
@@ -252,7 +252,7 @@ public class TimerInfo extends Activity {
 	        date_btn.setText(day+"."+month+"."+year);
 	        
 	        if(Integer.parseInt(start_h+start_m) > Integer.parseInt(end_h+end_m))
-	        	Toast.makeText(TimerInfo.this,"Startzeit grösser Endezeit", Toast.LENGTH_LONG).show();
+	        	Toast.makeText(TimerInfo.this,getResources().getText(R.string.timerinfo_timeerr), Toast.LENGTH_LONG).show();
 	        else
 	        {
 		        time_start_btn.setText(start_h+":"+start_m);

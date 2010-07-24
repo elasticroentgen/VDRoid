@@ -6,7 +6,7 @@
   android:orientation="vertical"
   >
    <TextView 
-	android:text="Timer bearbeiten" 
+	android:text="@string/timerinfo" 
 	android:id="@+id/timerinfo_head"
 	android:textSize="17dp"
 	android:layout_width="fill_parent" 
@@ -15,7 +15,7 @@
     android:background="@android:drawable/title_bar"/>
   
 <CheckBox 
-android:text="Timer aktiv" 
+android:text="@string/timerinfo_active" 
 android:id="@+id/timerinfo_active" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content"/>
@@ -30,7 +30,7 @@ android:layout_height="wrap_content"/>
     /> 
 
 <TextView 
-android:text="Titel" 
+android:text="@string/timerinfo_title" 
 android:id="@+id/TextView01" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content"/>
@@ -52,7 +52,7 @@ android:layout_height="wrap_content"
     /> 
 
 <TextView 
-android:text="Datum" 
+android:text="@string/timerinfo_date" 
 android:id="@+id/TextView02" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content"/>
@@ -63,7 +63,7 @@ android:layout_width="fill_parent"
 android:layout_height="wrap_content"/>
 
 <TextView 
-android:text="Zeit:" 
+android:text="@string/timerinfo_time" 
 android:id="@+id/TextView03" 
 android:layout_width="wrap_content" 
 android:layout_height="wrap_content"/>
@@ -112,7 +112,7 @@ android:layout_height="wrap_content"/>
 		android:gravity="center_horizontal"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
-		android:text="OK"
+		android:text="@string/ok"
 		/>
 		
 		<Button 
@@ -121,7 +121,7 @@ android:layout_height="wrap_content"/>
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
-		android:text="Abbrechen"
+		android:text="@string/cancel"
 		/>
 </LinearLayout>
 <Button 
@@ -129,7 +129,7 @@ android:layout_height="wrap_content"/>
 		android:gravity="center_horizontal"
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content"
-		android:text="Timer löschen"
+		android:text="@string/timerinfo_del"
 		/>
 
 </LinearLayout>

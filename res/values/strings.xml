@@ -8,6 +8,7 @@
 <string name="yes">Ja</string>
 <string name="no">Nein</string>
 <string name="cancel">Abbrechen</string>    
+<string name="ok">Ok</string>
 
 <string name="no_server">Keine VDR-Server eingerichtet!</string>
 <string name="new_server">Neue VDR-Verbindung hinzufügen</string>
@@ -33,6 +34,17 @@
 <string name="selectvdr_add">Neue VDR-Verbindung anlegen?</string>
 <string name="selectvdr_menu_add">Neue VDR-Verbindung</string>
 <string name="selectvdr_menu_del">VDR-Verbindung entfernen</string>
+
+<string name="timerinfo">Timer bearbeiten</string>
+<string name="timerinfo_active">Timer aktiv</string>
+<string name="timerinfo_date">Datum</string>
+<string name="timerinfo_time">Zeit</string>
+<string name="timerinfo_del">Timer löschen</string>
+<string name="timerinfo_title">Titel</string>
+<string name="timerinfo_alert">Timer wirklich löschen?</string>
+<string name="timerinfo_changed">Timer geändert</string>
+<string name="timerinfo_timeerr">Startzeit grösser Endzeit</string>
+
 
 <string name="toast_blocked">VDR-Interface blockiert!</string>
 
