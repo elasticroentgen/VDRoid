@@ -43,17 +43,17 @@ public class add_new_server extends Activity {
 	        	db.init();
 
 	        	if(name.length() == 0 && host.length() == 0)
-	        		Toast.makeText(add_new_server.this,"@string/new_server_mishost", Toast.LENGTH_LONG).show();
+	        		Toast.makeText(add_new_server.this,getResources().getText(R.string.new_server_mishost), Toast.LENGTH_LONG).show();
 	        	else if(db.serverExists(name))
-	        		Toast.makeText(add_new_server.this,"@string/new_server_exists", Toast.LENGTH_LONG).show();
+	        		Toast.makeText(add_new_server.this,getResources().getText(R.string.new_server_exists), Toast.LENGTH_LONG).show();
 	        	else if(key.length() != 8 && cb.isChecked())
-	        		Toast.makeText(add_new_server.this,"@string/new_server_invkey", Toast.LENGTH_LONG).show();
+	        		Toast.makeText(add_new_server.this,getResources().getText(R.string.new_server_invkey), Toast.LENGTH_LONG).show();
 	        	else
 	        	{
 	        		//Save new Server to Database
 	        		
 	        		db.addServer(name, host,port, encon, key);
-	        		Toast.makeText(add_new_server.this,name + "@string/new_server_added", Toast.LENGTH_LONG).show();
+	        		Toast.makeText(add_new_server.this,name + getResources().getText(R.string.new_server_added), Toast.LENGTH_LONG).show();
 	        		finish();
 	        	}
 	        		

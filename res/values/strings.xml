@@ -14,10 +14,12 @@
 
 <string name="new_server_key">Schlüssel</string>
 <string name="new_server_mishost">Name oder Host fehlt!</string>
-<string name="new_server_exisits">Eintrag exisitert bereits!</string>
+<string name="new_server_exists">Eintrag exisitert bereits!</string>
 <string name="new_server_invkey">Schlüssel ist nicht exakt 8 Zeichen!</string>
 <string name="new_server_added">hinzugefügt!</string> 
 
 <string name="show_chans_load">Lade VDR-Kanalliste...</string>
+
+<string name="toast_blocked">VDR-Interface blockiert!</string>
 
 </resources>

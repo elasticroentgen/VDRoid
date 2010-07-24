@@ -44,7 +44,7 @@ public class vdr_show_channels extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        chanload_prog = ProgressDialog.show( vdr_show_channels.this, "" , R.string.show_chans_load, false);
+        chanload_prog = ProgressDialog.show( vdr_show_channels.this, "" , getResources().getText(R.string.show_chans_load), false);
         
         setContentView(R.layout.channels);
         
@@ -145,7 +145,7 @@ public class vdr_show_channels extends Activity {
         	if(msg.getData().getBoolean("error"))
         	{
         		chanload_prog.dismiss();
-        		Toast.makeText(vdr_show_channels.this,"VDR-Interface blockiert!", Toast.LENGTH_LONG).show();
+        		Toast.makeText(vdr_show_channels.this,getResources().getText(R.string.toast_blocked) , Toast.LENGTH_LONG).show();
         		finish();
         	}
         	

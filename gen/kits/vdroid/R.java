@@ -97,7 +97,7 @@ public final class R {
         public static final int new_server_add=0x7f040005;
         public static final int new_server_added=0x7f04000e;
         public static final int new_server_esvdrp=0x7f040009;
-        public static final int new_server_exisits=0x7f04000c;
+        public static final int new_server_exists=0x7f04000c;
         public static final int new_server_host=0x7f040006;
         public static final int new_server_invkey=0x7f04000d;
         public static final int new_server_key=0x7f04000a;
@@ -108,5 +108,6 @@ public final class R {
         public static final int sdk_min=0x7f040001;
         public static final int sdk_rec=0x7f040000;
         public static final int show_chans_load=0x7f04000f;
+        public static final int toast_blocked=0x7f040010;
     }
 }
