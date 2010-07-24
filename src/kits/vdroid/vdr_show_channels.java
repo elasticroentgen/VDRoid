@@ -60,7 +60,7 @@ public class vdr_show_channels extends Activity {
 		    public void onItemClick(AdapterView<?> parent, android.view.View view,final int position, long id)
 		    {
 		    	
-		    	final CharSequence[] items = {"Umschalten", "Infos", "Programm"};
+		    	final CharSequence[] items = {getResources().getText(R.string.switchc), getResources().getText(R.string.info), getResources().getText(R.string.program)};
 
 		    	AlertDialog.Builder builder = new AlertDialog.Builder(vdr_show_channels.this);
 		    	builder.setTitle(chanadp.getChanName(position));

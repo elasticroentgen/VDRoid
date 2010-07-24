@@ -88,17 +88,17 @@ public class vdr_show extends Activity {
     	vdrcon.close();
     	if(server_greeting == "N/A")
     	{
-    		Toast.makeText(vdr_show.this,"Keine Verbindung!", Toast.LENGTH_LONG).show();
+    		Toast.makeText(vdr_show.this,getResources().getText(R.string.toast_blocked), Toast.LENGTH_LONG).show();
     		finish();
     	}
     	else if(server_greeting == null)
     	{
-    		Toast.makeText(vdr_show.this,"Keine Verbindung oder Interface blockiert!", Toast.LENGTH_LONG).show();
+    		Toast.makeText(vdr_show.this,getResources().getText(R.string.toast_blocked), Toast.LENGTH_LONG).show();
     		finish();
     	}
     	else if(server_greeting.contains("Access denied"))
     	{
-    		Toast.makeText(vdr_show.this,"VDR weist Verbindung ab", Toast.LENGTH_LONG).show();
+    		Toast.makeText(vdr_show.this,getResources().getText(R.string.toast_denied), Toast.LENGTH_LONG).show();
     		finish();
     	}
     	else    		
@@ -126,7 +126,9 @@ public class vdr_show extends Activity {
             String status = msg.getData().getString("status");
             String disk = msg.getData().getString("disk");
             vdr_status.setText(status);
-            vdr_status_head.setText("VDR Status - " + disk + " Speicher belegt");
+            String rmsg = (String) getResources().getText(R.string.show_disk);
+            String dmsg = rmsg.replace("#DISK#", disk);
+            vdr_status_head.setText(dmsg);
         }
     };
     
@@ -208,7 +210,7 @@ public class vdr_show extends Activity {
 					}
 				}
 				
-		        String line = actchan[1] + " - " + actchan[2] + "\nEs Läuft: " + act_title;
+		        String line = actchan[1] + " - " + actchan[2] + "\n" + getResources().getText(R.string.currun) + ": " + act_title;
 				        
 		        Message msg = mHandler.obtainMessage();
 		        Bundle b = new Bundle();
@@ -218,11 +220,7 @@ public class vdr_show extends Activity {
 		        mHandler.sendMessage(msg);
 		        
 		    }
-        	
         	Log.d("VDRTHREAD", "Ended");
         }
-        
     }
-
-	
 }

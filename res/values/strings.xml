@@ -11,6 +11,7 @@
 <string name="ok">Ok</string>
 <string name="switchc">Umschalten</string>
 <string name="record">Aufzeichnen</string>
+<string name="info">Infos</string>
 
 <string name="no_server">Keine VDR-Server eingerichtet!</string>
 <string name="new_server">Neue VDR-Verbindung hinzufügen</string>
@@ -30,7 +31,9 @@
 <string name="del_server">Verbindung entfernen</string>
 
 <string name="show_chans_load">Lade VDR-Kanalliste...</string>
-
+<string name="show_disk">VDR Status - #DISK# Speicher belegt</string>
+<string name="program">Programm</string>
+<string name="currun">Es läuft</string>
 
 
 <string name="selectvdr_add">Neue VDR-Verbindung anlegen?</string>
@@ -47,12 +50,11 @@
 <string name="timerinfo_changed">Timer geändert</string>
 <string name="timerinfo_timeerr">Startzeit grösser Endzeit</string>
 
-<string name="program">Programm</string>
-
 <string name="records">Aufnahmen</string>
 <string name="records_play_begin">Ab Anfang wiedergeben</string>
 
 <string name="toast_blocked">VDR-Interface blockiert!</string>
+<string name="toast_denied">VDR weist Verbindung ab</string>
 <string name="toast_switch_chan">Wechsle Kanal...</string>
 <string name="toast_record">Aufnahme angelegt</string>
 <string name="toast_norecords">Keine Aufnahmen vorhanden</string>
