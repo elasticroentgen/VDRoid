@@ -47,6 +47,7 @@
 <string name="timerinfo_changed">Timer geändert</string>
 <string name="timerinfo_timeerr">Startzeit grösser Endzeit</string>
 
+<string name="program">Programm</string>
 
 <string name="toast_blocked">VDR-Interface blockiert!</string>
 <string name="toast_switch_chan">Wechsle Kanal...</string>

@@ -56,7 +56,7 @@ public class vdr_programm extends Activity {
         
         if(chanline == null)
         {
-        	Toast.makeText(vdr_programm.this,"VDR-Interface blockiert!", Toast.LENGTH_LONG).show();
+        	Toast.makeText(vdr_programm.this,getResources().getText(R.string.toast_blocked), Toast.LENGTH_LONG).show();
         	finish();
         }
         
@@ -64,7 +64,7 @@ public class vdr_programm extends Activity {
         
         String channame = chanline.split(" ",3)[2].split(";",2)[0];
         TextView header = ((TextView) findViewById(R.id.vdr_prog_head));
-        header.setText("Programm - " + channame);
+        header.setText(getResources().getText(R.string.program) + " - " + channame);
 
         ListView proglist = (ListView) findViewById(R.id.vdr_prog_list);
         proglist.setAdapter(progadp);
@@ -175,7 +175,8 @@ public class vdr_programm extends Activity {
         	if(msg.getData().getBoolean("error"))
         	{
         		//chanload_prog.dismiss();
-        		Toast.makeText(vdr_programm.this,"VDR-Interface blockiert!", Toast.LENGTH_LONG).show();
+        		
+        		Toast.makeText(vdr_programm.this,getResources().getText(R.string.toast_blocked), Toast.LENGTH_LONG).show();
         		finish();
         	}
         	
