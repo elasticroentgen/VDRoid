@@ -117,7 +117,7 @@ public class vdr_info extends Activity {
 	        {
 	            vdr.getData("CHAN " + chan);
 	            vdr.close();
-	            Toast.makeText(vdr_info.this,"Wechsle Kanal...", Toast.LENGTH_LONG).show();
+	            Toast.makeText(vdr_info.this,getResources().getText(R.string.toast_switch_chan), Toast.LENGTH_LONG).show();
 	            finish();
 	        }
 	    }); 
@@ -132,7 +132,7 @@ public class vdr_info extends Activity {
 	        	String timer = "1:" + chan + ":" + timer_date + ":" + start_timer + ":" + end_timer + ":99:99:" + title_timer + ":";
 	            vdr.getData("NEWT " + timer);
 	            vdr.close();
-	            Toast.makeText(vdr_info.this,"Aufnahme angelegt!", Toast.LENGTH_LONG).show();
+	            Toast.makeText(vdr_info.this,getResources().getText(R.string.toast_record), Toast.LENGTH_LONG).show();
 	            finish();
 	        }
 	    }); 

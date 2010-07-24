@@ -67,12 +67,12 @@ android:layout_weight="1"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:text="Aufzeichnen" />
+    android:text="@string/record" />
     
     <Button android:id="@+id/info_switch"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    android:text="Umschalten" />
+    android:text="@string/switchc" />
 
 </LinearLayout>

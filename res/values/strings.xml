@@ -9,6 +9,8 @@
 <string name="no">Nein</string>
 <string name="cancel">Abbrechen</string>    
 <string name="ok">Ok</string>
+<string name="switchc">Umschalten</string>
+<string name="record">Aufzeichnen</string>
 
 <string name="no_server">Keine VDR-Server eingerichtet!</string>
 <string name="new_server">Neue VDR-Verbindung hinzufügen</string>
@@ -47,5 +49,7 @@
 
 
 <string name="toast_blocked">VDR-Interface blockiert!</string>
+<string name="toast_switch_chan">Wechsle Kanal...</string>
+<string name="toast_record">Aufnahme angelegt</string>
 
 </resources>
