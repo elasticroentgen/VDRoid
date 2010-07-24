@@ -46,14 +46,14 @@ public class selectvdr extends ListActivity {
 		else
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	    	builder.setMessage("Neue VDR-Verbindung anlegen?")
+	    	builder.setMessage(getResources().getText(R.string.selectvdr_add))
 	    	       .setCancelable(false)
-	    	       .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+	    	       .setPositiveButton(getResources().getText(R.string.yes), new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	                startActivity(new_server_intent);
 	    	           }
 	    	       })
-	    	       .setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+	    	       .setNegativeButton(getResources().getText(R.string.no), new DialogInterface.OnClickListener() {
 	    	           public void onClick(DialogInterface dialog, int id) {
 	    	                dialog.cancel();
 	    	           }
@@ -101,8 +101,8 @@ public class selectvdr extends ListActivity {
 	//Menu
 	/* Creates the menu items */
 	public boolean onCreateOptionsMenu(Menu menu) {
-	    menu.add(0, 1, 0, "Neue VDR-Verbindung");
-	    menu.add(0, 2, 0, "VDR-Verbindung entfernen");
+	    menu.add(0, 1, 0, getResources().getText(R.string.selectvdr_menu_add));
+	    menu.add(0, 2, 0, getResources().getText(R.string.selectvdr_menu_del));
 	    return true;
 	}
 

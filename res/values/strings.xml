@@ -4,6 +4,11 @@
     <string name="sdk_min">6</string>
     
     <string name="app_name">VDRControl</string>
+
+<string name="yes">Ja</string>
+<string name="no">Nein</string>
+<string name="cancel">Abbrechen</string>    
+
 <string name="no_server">Keine VDR-Server eingerichtet!</string>
 <string name="new_server">Neue VDR-Verbindung hinzufügen</string>
 <string name="new_server_add">Hinzufügen</string>
@@ -22,6 +27,12 @@
 <string name="del_server">Verbindung entfernen</string>
 
 <string name="show_chans_load">Lade VDR-Kanalliste...</string>
+
+
+
+<string name="selectvdr_add">Neue VDR-Verbindung anlegen?</string>
+<string name="selectvdr_menu_add">Neue VDR-Verbindung</string>
+<string name="selectvdr_menu_del">VDR-Verbindung entfernen</string>
 
 <string name="toast_blocked">VDR-Interface blockiert!</string>
 
