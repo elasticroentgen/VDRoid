@@ -54,7 +54,9 @@ public class del_servers extends Activity {
 		
 		//User fragen
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    	builder.setMessage("Verbindung \""+ name + "\" löschen?")
+		String rmsg = (String) getResources().getText(R.string.del_server_alert);
+		String msg = rmsg.replace("#NAME#", name);
+    	builder.setMessage(msg)
     	       .setCancelable(false)
     	       .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
     	           public void onClick(DialogInterface dialog, int id) {

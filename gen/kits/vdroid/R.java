@@ -93,6 +93,8 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040002;
+        public static final int del_server=0x7f040010;
+        public static final int del_server_alert=0x7f04000f;
         public static final int new_server=0x7f040004;
         public static final int new_server_add=0x7f040005;
         public static final int new_server_added=0x7f04000e;
@@ -107,7 +109,7 @@ public final class R {
         public static final int no_server=0x7f040003;
         public static final int sdk_min=0x7f040001;
         public static final int sdk_rec=0x7f040000;
-        public static final int show_chans_load=0x7f04000f;
-        public static final int toast_blocked=0x7f040010;
+        public static final int show_chans_load=0x7f040011;
+        public static final int toast_blocked=0x7f040012;
     }
 }

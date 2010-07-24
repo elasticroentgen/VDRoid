@@ -18,6 +18,9 @@
 <string name="new_server_invkey">Schlüssel ist nicht exakt 8 Zeichen!</string>
 <string name="new_server_added">hinzugefügt!</string> 
 
+<string name="del_server_alert">Verbindung #NAME# löschen?</string>
+<string name="del_server">Verbindung entfernen</string>
+
 <string name="show_chans_load">Lade VDR-Kanalliste...</string>
 
 <string name="toast_blocked">VDR-Interface blockiert!</string>
