@@ -23,7 +23,7 @@
 	/>
  
 <TextView 
-	android:text="VDR Status" 
+	android:text="@string/show_status" 
 	android:id="@+id/vdr_status_head" 
 	android:layout_width="fill_parent" 
 	android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
 	/>  
   
 <TextView 
-	android:text="Hole Daten..." 
+	android:text="@string/show_getdata" 
 	android:id="@+id/vdr_status_chan" 
 	android:layout_width="fill_parent" 
 	android:layout_height="wrap_content"/>

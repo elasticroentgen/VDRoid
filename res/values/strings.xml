@@ -32,6 +32,9 @@
 
 <string name="show_chans_load">Lade VDR-Kanalliste...</string>
 <string name="show_disk">VDR Status - #DISK# Speicher belegt</string>
+<string name="show_status">VDR Status</string>
+<string name="show_getdata">Hole Daten...</string>
+
 <string name="program">Programm</string>
 <string name="currun">Es läuft</string>
 
@@ -39,6 +42,12 @@
 <string name="selectvdr_add">Neue VDR-Verbindung anlegen?</string>
 <string name="selectvdr_menu_add">Neue VDR-Verbindung</string>
 <string name="selectvdr_menu_del">VDR-Verbindung entfernen</string>
+
+<string name="timers">Timer</string>
+<string name="timers_inactive">Inaktiv</string>
+<string name="timers_active">Aktiv</string>
+<string name="timers_recording">Zeichnet auf</string>
+<string name="timers_notimer">Keine Timer vorhanden</string>
 
 <string name="timerinfo">Timer bearbeiten</string>
 <string name="timerinfo_active">Timer aktiv</string>

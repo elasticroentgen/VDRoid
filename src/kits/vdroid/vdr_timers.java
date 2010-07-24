@@ -139,9 +139,9 @@ public class vdr_timers extends Activity {
 				
 				((TextView) convertView.findViewById(R.id.timer_li_status)).setText(timerdata.get(position).status);
 								
-				if(timerdata.get(position).status == "Inaktiv")
+				if(timerdata.get(position).status == (String) getResources().getText(R.string.timers_inactive))
 					((TextView) convertView.findViewById(R.id.timer_li_status)).setTextColor(Color.YELLOW);
-				else if(timerdata.get(position).status == "Zeichnet auf")
+				else if(timerdata.get(position).status == (String) getResources().getText(R.string.timers_recording))
 					((TextView) convertView.findViewById(R.id.timer_li_status)).setTextColor(Color.RED);
 				else
 					((TextView) convertView.findViewById(R.id.timer_li_status)).setTextColor(Color.GREEN);
@@ -158,7 +158,7 @@ public class vdr_timers extends Activity {
 	        	
 	        	if(msg.getData().getBoolean("error"))
 	        	{
-	        		Toast.makeText(vdr_timers.this,"VDR-Interface blockiert!", Toast.LENGTH_LONG).show();
+	        		Toast.makeText(vdr_timers.this,getResources().getText(R.string.toast_blocked), Toast.LENGTH_LONG).show();
 	        		finish();
 	        	}
 	        	
@@ -174,7 +174,7 @@ public class vdr_timers extends Activity {
 	        	}
 	        	else
 	        	{
-	        		Toast.makeText(vdr_timers.this,"Keine Timer vorhanden!", Toast.LENGTH_LONG).show();
+	        		Toast.makeText(vdr_timers.this,getResources().getText(R.string.timers_notimer), Toast.LENGTH_LONG).show();
 	        		finish();
 	        	}
 	        	
@@ -241,12 +241,12 @@ public class vdr_timers extends Activity {
 	    				//Activetimer
 	    				int state = Integer.parseInt(timerline.split(":")[0]);
 	    				if(state == 0 || state == 2 || state == 4 || state == 8)
-	    					status = "Inaktiv";
+	    					status = (String) getResources().getText(R.string.timers_inactive);
 	    				else
-	    					status = "Aktiv";
+	    					status = (String) getResources().getText(R.string.timers_active);
 	    				
 	    				if(state == 9)
-	    					status = "Zeichnet auf";
+	    					status = (String) getResources().getText(R.string.timers_recording);
 	    			
 	    				
 	    				//Chanalnummer

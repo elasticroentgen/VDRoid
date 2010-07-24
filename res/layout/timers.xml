@@ -8,7 +8,7 @@
   
   <TextView 
 	android:id="@+id/vdr_timers_head" 
-	android:text="Timer"
+	android:text="@string/timers"
 	android:textSize="17dp"
 	android:layout_width="fill_parent" 
 	android:layout_height="wrap_content"
