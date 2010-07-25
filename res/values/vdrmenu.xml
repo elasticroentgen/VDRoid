@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string-array name="vdr_menu"><item>Kanäle</item>
+<string-array name="vdr_menu">
+<item>Kanäle</item>
 <item>Timer</item>
 <item>Aufnahmen</item>
+<item>Fernbedienung</item>
 
 </string-array>
 </resources>

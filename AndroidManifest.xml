@@ -23,6 +23,7 @@
 <activity android:name="vdr_programm"></activity>
 <activity android:name="vdr_timers"></activity>
 <activity android:name="TimerInfo"></activity>
+<activity android:name="vdr_remote"></activity>
 </application>
 <uses-sdk android:targetSdkVersion="7"
           android:minSdkVersion="4"/>
