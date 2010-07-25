@@ -2,7 +2,7 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent"
-  android:layout_height="fill_parent"
+  android:layout_height="wrap_content"
   android:orientation="vertical"
   >
   
@@ -11,6 +11,7 @@
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
       android:gravity="center_horizontal"
+      android:layout_marginTop="20px"
       android:layout_weight="1">
       
   
@@ -21,6 +22,7 @@
         android:layout_marginLeft="10dip"
         android:gravity="center_horizontal"
         android:layout_weight="1"
+        android:hapticFeedbackEnabled="true"
         android:text="1" />
   
   	<Button
@@ -29,6 +31,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_weight="1"
+        android:hapticFeedbackEnabled="true"
         android:text="2" />
   
  	 <Button
@@ -38,6 +41,7 @@
         android:layout_marginRight="10dip"
         android:gravity="center_horizontal"
         android:layout_weight="1"
+        android:hapticFeedbackEnabled="true"
         android:text="3" />
 	</LinearLayout>  
   
@@ -56,6 +60,7 @@
         android:layout_marginLeft="10dip"
         android:gravity="center_horizontal"
         android:layout_weight="1"
+        android:hapticFeedbackEnabled="true"
         android:text="4" />
   
   	<Button
@@ -64,6 +69,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_weight="1"
+        android:hapticFeedbackEnabled="true"
         android:text="5" />
   
  	 <Button
@@ -73,6 +79,7 @@
         android:layout_marginRight="10dip"
         android:gravity="center_horizontal"
         android:layout_weight="1"
+        android:hapticFeedbackEnabled="true"
         android:text="6" />
 	</LinearLayout> 
   
@@ -90,6 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
         android:layout_weight="1"
         android:text="7" />
   
@@ -98,6 +106,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
         android:layout_weight="1"
         android:text="8" />
   
@@ -107,6 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dip"
         android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
         android:layout_weight="1"
         android:text="9" />
 	</LinearLayout> 
@@ -125,6 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
         android:layout_weight="1"
         android:text="MENU" />
   
@@ -133,6 +144,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
         android:layout_weight="1"
         android:text="0" />
   
@@ -142,7 +154,190 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dip"
         android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
         android:layout_weight="1"
         android:text="INFO" />
 	</LinearLayout> 
+
+	<View 
+    android:layout_width="fill_parent" 
+    android:layout_height="2dp" 
+    android:background="#FFFFFF" 
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    
+    />
+    <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:gravity="center_horizontal"
+      android:layout_weight="1">
+      
+  
+ 	 <Button
+        android:id="@+id/remo_epg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
+        android:layout_weight="1"
+        android:text="EPG" />
+  
+  	<Button
+        android:id="@+id/remo_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
+        android:layout_weight="1"
+        android:text="UP" />
+  
+ 	 <Button
+        android:id="@+id/remo_volup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dip"
+        android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
+        android:layout_weight="1"
+        android:text="VOL +" />
+	</LinearLayout> 
+    
+    <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:gravity="center_horizontal"
+      android:layout_weight="1">
+     <Button
+        android:id="@+id/remo_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
+        android:layout_weight="1"
+        android:text="LEFT" />
+  
+  	<Button
+        android:id="@+id/remo_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"
+        android:hapticFeedbackEnabled="true"
+        android:text="OK" />
+  
+ 	 <Button
+        android:id="@+id/remo_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dip"
+        android:hapticFeedbackEnabled="true"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="RIGHT" />
+	</LinearLayout> 
+    
+    <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:gravity="center_horizontal"
+      android:layout_weight="1">
+     <Button
+        android:id="@+id/remo_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:hapticFeedbackEnabled="true"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"
+        android:text="EXIT" />
+  
+  	<Button
+        android:id="@+id/remo_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
+        android:layout_weight="1"
+        android:text="DOWN" />
+  
+ 	 <Button
+        android:id="@+id/remo_voldown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dip"
+        android:gravity="center_horizontal"
+        android:hapticFeedbackEnabled="true"
+        android:layout_weight="1"
+        android:text="VOL -" />
+	</LinearLayout> 
+    
+    <View 
+    android:layout_width="fill_parent" 
+    android:layout_height="2dp" 
+    android:background="#FFFFFF" 
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    
+    />     
+	
+	 <LinearLayout
+      android:orientation="horizontal"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:gravity="center_horizontal"
+      android:layout_weight="1">
+ 
+  
+ 	 <Button
+        android:id="@+id/remo_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"
+        android:background="@drawable/red_button"
+        android:hapticFeedbackEnabled="true"
+        android:text="" />
+  
+  	<Button
+        android:id="@+id/remo_green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"
+        android:layout_marginLeft="4dip"
+        android:background="@drawable/green_button"
+        android:hapticFeedbackEnabled="true"
+        android:text="" />
+        
+     <Button
+        android:id="@+id/remo_yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_weight="1"
+        android:layout_marginLeft="4dip"
+        android:hapticFeedbackEnabled="true"
+        android:background="@drawable/yellow_button"
+        android:text="" />
+  
+ 	 <Button
+        android:id="@+id/remo_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dip"
+        android:gravity="center_horizontal"
+        android:layout_marginLeft="4dip"
+        android:hapticFeedbackEnabled="true"
+        android:background="@drawable/blue_button"
+        android:layout_weight="1"
+        android:text="" />
+	</LinearLayout> 
+	
 </LinearLayout>
