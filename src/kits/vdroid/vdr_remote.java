@@ -2,16 +2,20 @@ package kits.vdroid;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 public class vdr_remote extends Activity {
 	
+	String host;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.remote);
+        host = getIntent().getData().getHost();
+        
         
         Button btn_0 = ((Button) findViewById(R.id.remo_0));
         btn_0.setOnClickListener(new View.OnClickListener() {
@@ -163,13 +167,44 @@ public class vdr_remote extends Activity {
                 sendKey("Back");
             }
         });
+        
+        Button btn_epg = ((Button) findViewById(R.id.remo_epg));
+        btn_epg.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sendKey("Schedule");
+            }
+        });
+        
+        Button btn_volu = ((Button) findViewById(R.id.remo_volup));
+        btn_volu.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sendKey("Volume+");
+            }
+        });
+        
+        Button btn_vold = ((Button) findViewById(R.id.remo_voldown));
+        btn_vold.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sendKey("Volume-");
+            }
+        });
+
+        Button btn_info = ((Button) findViewById(R.id.remo_info));
+        btn_info.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                sendKey("Info");
+            }
+        });
+
 	}
 	
 
 	private void sendKey(String key)
 	{
-		
-		
+		Log.d("VDREMOTE","Sending Key:" + key);
+		SVDRP vdr = new SVDRP(host,vdr_remote.this);
+		vdr.getData("HITK " + key);
+		vdr.close();
 	}
 	
 	
