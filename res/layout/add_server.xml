@@ -4,11 +4,20 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+<ScrollView
+	android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+<LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
 
 <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/new_server_name"/>   
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/new_server_name"/>   
 <EditText
     android:id="@+id/new_server_name_edit"
     android:layout_width="fill_parent"
@@ -75,5 +84,6 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="@string/new_server_add" />
-
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>
