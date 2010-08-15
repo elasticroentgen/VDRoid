@@ -74,7 +74,10 @@ private static final String DATABASE_NAME = "vdroid.db";
    {
 	   Cursor c = db.rawQuery("SELECT PORT FROM SERVERS WHERE NAME = '"+ name + "'",null); 
 	   c.moveToFirst();
-	   return Integer.parseInt(c.getString(0));
+	   String port = c.getString(0);
+	   if(port.length() == 0)
+		   port = "2001";
+	   return Integer.parseInt(port);
    }
    
    public String getEncKey(String name)

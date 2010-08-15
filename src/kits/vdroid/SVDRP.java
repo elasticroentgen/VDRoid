@@ -56,7 +56,10 @@ public class SVDRP {
 		
 		db = new VDRDBHelper(parent);
 		db.init();
-		sockaddr = new InetSocketAddress(db.getHostByName(server), db.getPortByName(server));
+		String hostname = db.getHostByName(server);
+		if(hostname.length() == 0)
+			hostname = "localhost";
+		sockaddr = new InetSocketAddress(hostname, db.getPortByName(server));
 		isEnc = db.isEncOn(server);
 		if(isEnc)
 			enckey = db.getEncKey(server);
