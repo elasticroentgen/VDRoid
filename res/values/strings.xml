@@ -62,6 +62,13 @@
 <string name="records">Aufnahmen</string>
 <string name="records_play_begin">Ab Anfang wiedergeben</string>
 
+<string name="dstatus_version">VDR Version</string>
+<string name="dstatus_disk">Freier Speicher</string>
+<string name="dstatus_device">Aktuelles Gerät</string>
+<string name="dstatus_channel">Aktueller Sender</string>
+<string name="dstatus_signal">Signalstärke</string>
+<string name="dstatus_stream">Datenstrom (Video/Audio)</string>
+
 <string name="toast_blocked">VDR-Interface blockiert!</string>
 <string name="toast_denied">VDR weist Verbindung ab</string>
 <string name="toast_switch_chan">Wechsle Kanal...</string>
