@@ -81,6 +81,12 @@ public class vdr_show extends Activity {
 			    		menustart.setClass(kits.vdroid.vdr_show.this, kits.vdroid.vdr_remote.class);
 			    		startActivity(menustart);
 			    		break;
+			    	case 4:
+			    		stopUpdateThread();
+			    		menustart.setClass(kits.vdroid.vdr_show.this, kits.vdroid.DetailedStatus.class);
+			    		startActivity(menustart);
+			    		break;
+			    		
 			    	default:
 			    		Toast.makeText(vdr_show.this,"Not implemented!", Toast.LENGTH_LONG).show();
 		    	}

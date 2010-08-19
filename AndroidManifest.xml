@@ -25,6 +25,7 @@
 <activity android:name="TimerInfo"></activity>
 <activity android:name="vdr_remote"></activity>
 <activity android:screenOrientation="landscape" android:name="RemoteOSD"></activity>
+<activity android:name="DetailedStatus"></activity>
 </application>
 <uses-sdk android:targetSdkVersion="7"
           android:minSdkVersion="4"/>
