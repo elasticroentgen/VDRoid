@@ -64,6 +64,7 @@ public class DetailedStatus extends Activity {
         String freespace_per = actdisk_line.split(" ")[3];
         String freespace = freespace_per + "  (" + freespace_mb + ")";
         String[] actchan = actchan_line.split(" ",3);
+        
         String chan = actchan[1] + " - " + actchan[2];
         
         

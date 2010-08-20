@@ -113,7 +113,7 @@ public class vdr_show extends Activity {
     		finish();
     	}
     	else    		
-    		Toast.makeText(vdr_show.this,server_greeting, Toast.LENGTH_LONG).show();
+    		Toast.makeText(vdr_show.this,server_greeting, Toast.LENGTH_SHORT).show();
     	
     }
 	
