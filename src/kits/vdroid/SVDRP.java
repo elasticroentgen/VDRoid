@@ -104,7 +104,7 @@ public class SVDRP {
 			while(!net_read.ready())
 			{
 				//Only wait 10secs then throw exeption
-				if(rdy_wait > 5)
+				if(rdy_wait > 50)
 				{
 					Toast.makeText(parent, "SVDRP Connection Error. Check connection and try again!", Toast.LENGTH_LONG).show();
 					return null;
