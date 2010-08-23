@@ -28,6 +28,7 @@ import org.apache.commons.codec.binary.Base64;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 
 public class SVDRP {
@@ -99,9 +100,18 @@ public class SVDRP {
 	
 	private String readEnc() {
 		try {
+			int rdy_wait = 0;
 			while(!net_read.ready())
 			{
+				//Only wait 10secs then throw exeption
+				if(rdy_wait > 5)
+				{
+					Toast.makeText(parent, "SVDRP Connection Error. Check connection and try again!", Toast.LENGTH_LONG).show();
+					return null;
+				}
 				Thread.sleep(200);
+				rdy_wait++;
+				
 			}
 			String line = net_read.readLine();
 			if(isEnc)
@@ -228,6 +238,7 @@ public class SVDRP {
 			}
 			else
 				sock.close();
+			Log.d("SVDRP","Closed connection to SVDRP Host.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
