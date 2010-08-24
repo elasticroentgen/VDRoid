@@ -60,16 +60,6 @@
     android:text="@string/new_server_esvdrp"
     />   
 
-<TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/new_server_key"/>   
-<EditText
-    android:id="@+id/new_server_host_key"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@android:drawable/editbox_background"/>
-
 <View 
     android:layout_width="fill_parent" 
     android:layout_height="2dp" 
