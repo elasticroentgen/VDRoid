@@ -11,18 +11,9 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-
-import java.security.spec.AlgorithmParameterSpec;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import org.apache.commons.codec.binary.Base64;
 
 //import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
@@ -40,20 +31,15 @@ public class SVDRP {
 	private SocketAddress sockaddr;
 	private String greet;
 	private VDRDBHelper db;
-	private Boolean isEnc;
 	private String server;
 	private Context parent;
-	private Cipher ci_in;
-	private Cipher ci_out;
-	private String enckey;
+
 	
 	public SVDRP (String iserver, Context iparent)
 	{
 		greet = "N/A";
 		server = iserver;
-		isEnc = false;
 		parent = iparent;
-		enckey = null;
 		
 		db = new VDRDBHelper(parent);
 		db.init();
@@ -61,9 +47,7 @@ public class SVDRP {
 		if(hostname.length() == 0)
 			hostname = "localhost";
 		sockaddr = new InetSocketAddress(hostname, db.getPortByName(server));
-		isEnc = db.isEncOn(server);
-		if(isEnc)
-			enckey = db.getEncKey(server);
+
 		db.close();
 		sock = new Socket();
 		
@@ -77,24 +61,7 @@ public class SVDRP {
 			return;
 			
 		}
-		if(isEnc) //Verschlüsselt Senden
-		{
-			try {
-				byte[] data = input.getBytes();
-				byte[] encdata = ci_out.doFinal(data);
-				String sendbuf = new String(Base64.encodeBase64(encdata));
-				net_write.write(sendbuf+"\n");
-			} catch (IllegalBlockSizeException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (BadPaddingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		else
-			net_write.write(input+"\n");
-		
+		net_write.write(input+"\n");
 		net_write.flush();
 	}
 	
@@ -114,28 +81,14 @@ public class SVDRP {
 				
 			}
 			String line = net_read.readLine();
-			if(isEnc)
-			{
-				byte[] data = Base64.decodeBase64(line.getBytes());
-				byte[] unenc = ci_in.doFinal(data);
-				String data_str = new String(unenc);
-				return data_str;
-			}
-			else
-				return line;
+			return line;
 		
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
-		} catch (IllegalBlockSizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (BadPaddingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
+		}  catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -155,22 +108,7 @@ public class SVDRP {
 			sock.setSoTimeout(2000);
 			sock.connect(sockaddr, 10000);
 			
-			if(isEnc)
-			{
-				Log.d("SVDRPC", "Starting encrypted Communication");
-				//Key
-				SecretKey ci_key = new SecretKeySpec( enckey.getBytes(),"DES"); 
-				byte[] iv = new byte[]{(byte)0x8E, 0x12, 0x39, (byte)0x9C,0x07,0x72,0x6F, 0x5A};
-		        AlgorithmParameterSpec paramSpec = new IvParameterSpec(iv);	
-				//Inut Cipher
-				
-				ci_in = Cipher.getInstance("DES/CFB8/NoPadding");
-				ci_in.init(Cipher.DECRYPT_MODE, ci_key,paramSpec);
-				ci_out = Cipher.getInstance("DES/CFB8/NoPadding");
-				ci_out.init(Cipher.ENCRYPT_MODE,ci_key,paramSpec);
-			}
-			else
-				Log.d("SVDRPC", "Starting non-encrypted Communication");
+			Log.d("SVDRPC", "Starting non-encrypted Communication");
 
 			net_in = sock.getInputStream();
 			net_out = sock.getOutputStream();
@@ -180,45 +118,7 @@ public class SVDRP {
 			net_write = new PrintWriter(net_out, true);
 						
 			//Handshaking Encrypted Connection
-			if(isEnc)
-			{
-				Log.d("SVDRP-ENC", "Handshakeing");
-				
-				if(!sock.isConnected())
-				{
-					sock.close();
-					throw new Exception();
-				}
-				
-				int i = 0;
-				while(!net_read.ready())
-				{
-					Log.d("END",String.valueOf(net_in.available()));
-					i++;
-					Thread.sleep(500);
-					if(i>20)
-					{
-						Log.d("SVDRP-ENC", "Encrypted Communication failed. Check Key");
-						sock.close();
-						throw new Exception();
-					}
-				}
-				
-				String enc_greet = readEnc();
-				if(enc_greet.startsWith("200-eSVDRP"))
-				{
-					sendEnc("300-OK\n");
-					Log.d("SVDRP-ENC", "Encrypted Communication succesfully established");
-				}
-				else
-				{
-					sock.close();
-					Log.d("SVDRP-ENC", "Encrypted Communication failed. Check Key");
-					Log.d("SVDRP-ENC", "Got:" + enc_greet);
-					throw new Exception();
-				}
-			}
-
+			
 			greet = readEnc();
 			
 		} catch (IOException e) {
@@ -232,12 +132,7 @@ public class SVDRP {
 	public void close()
 	{
 		try {
-			if(isEnc)
-			{
-				sendEnc("999-Bye\n");
-			}
-			else
-				sock.close();
+			sock.close();
 			Log.d("SVDRP","Closed connection to SVDRP Host.");
 		} catch (IOException e) {
 			e.printStackTrace();
