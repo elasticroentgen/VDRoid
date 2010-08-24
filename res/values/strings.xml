@@ -19,7 +19,7 @@
 <string name="new_server_host">Hostname oder IP:</string>
 <string name="new_server_name">Name der Verbindung</string>
 <string name="new_server_port">SVDRP/eSVDRP-Port</string>
-<string name="new_server_esvdrp">eSVDRP aktivieren</string>
+<string name="new_server_esvdrp">SSL aktivieren</string>
 
 <string name="new_server_key">Schlüssel</string>
 <string name="new_server_mishost">Name oder Host fehlt!</string>

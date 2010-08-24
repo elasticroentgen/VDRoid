@@ -57,7 +57,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:id="@+id/new_server_isenc"
-    android:text="@string/new_server_esvdrp"
+    android:text="@string/new_server_ssl"
     />   
 
 <View 
