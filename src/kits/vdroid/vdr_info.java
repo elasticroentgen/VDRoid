@@ -43,7 +43,7 @@ public class vdr_info extends Activity {
         List<String> epginfo = vdr.getListData(qry);
         ListIterator<String> epg_it = epginfo.listIterator();
         
-        vdr.close();
+        //vdr.close();
         String title = null;
         String channame = null;
         String subtitle = null;

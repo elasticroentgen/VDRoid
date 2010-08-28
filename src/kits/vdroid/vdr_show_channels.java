@@ -61,7 +61,7 @@ public class vdr_show_channels extends Activity {
 		    {
 		    	
 		    	final CharSequence[] items = {getResources().getText(R.string.switchc), getResources().getText(R.string.info), getResources().getText(R.string.program)};
-
+		    	stopFetchThread();
 		    	AlertDialog.Builder builder = new AlertDialog.Builder(vdr_show_channels.this);
 		    	builder.setTitle(chanadp.getChanName(position));
 		    	builder.setItems(items, new DialogInterface.OnClickListener() {
