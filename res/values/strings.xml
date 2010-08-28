@@ -68,6 +68,7 @@
 <string name="dstatus_channel">Aktueller Sender</string>
 <string name="dstatus_signal">Signalstärke</string>
 <string name="dstatus_stream">Datenstrom (Video/Audio)</string>
+<string name="dstatus_nofemon">femon Plugin nicht installiert!</string>
 
 <string name="toast_blocked">VDR-Interface blockiert!</string>
 <string name="toast_denied">VDR weist Verbindung ab</string>

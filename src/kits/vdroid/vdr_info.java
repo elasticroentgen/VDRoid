@@ -130,6 +130,7 @@ public class vdr_info extends Activity {
 	        	SimpleDateFormat date_fmt = new SimpleDateFormat("yyyy-MM-dd");
 	        	String timer_date = date_fmt.format(start);
 	        	String timer = "1:" + chan + ":" + timer_date + ":" + start_timer + ":" + end_timer + ":99:99:" + title_timer + ":";
+	        	//TODO: Build in Checks for correct Data
 	            vdr.getData("NEWT " + timer);
 	            vdr.close();
 	            Toast.makeText(vdr_info.this,getResources().getText(R.string.toast_record), Toast.LENGTH_LONG).show();

@@ -130,30 +130,6 @@ style="@android:style/TextAppearance.Small"
     
     /> 
     
-    <TextView 
-android:text="@string/dstatus_stream" 
-android:layout_width="fill_parent" 
-android:layout_height="wrap_content"
-android:textSize="16sp"
-style="@android:style/TextAppearance.Large"
-/>
-
-<TextView 
-android:id="@+id/dstatus_stream_v" 
-android:layout_width="fill_parent" 
-android:layout_height="wrap_content"
-android:textSize="12sp"
-style="@android:style/TextAppearance.Small"
-/> 
- 
-<View 
-    android:layout_width="fill_parent" 
-    android:layout_height="2dp" 
-    android:background="#FFFFFF" 
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
-    
-    /> 
 
 
 </LinearLayout>
